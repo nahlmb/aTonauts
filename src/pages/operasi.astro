@@ -1,116 +1,149 @@
 ---
 import BookLayout from '../layouts/BookLayout.astro';
+
+const misiSteps = [
+  { num: '01', label: 'TEMUKAN\nANOMALI',       icon: '01_ICON.svg' },
+  { num: '02', label: 'KEMUKAKAN\nPERTANYAAN',  icon: 'Question_Icon.svg' },
+  { num: '03', label: 'DUGA DULU,\nUJI NANTI!', icon: 'Play_Icon.svg' },
+  { num: '04', label: 'SELIDIKI DAN\nBUKTIKAN', icon: 'Chain_Icon.svg' },
+  { num: '05', label: 'SAATNYA\nUJI DUGAAN',    icon: 'Different_Icon.svg' },
+  { num: '06', label: 'TENTANG\nMASA DEPAN',    icon: 'End_Icon.svg' },
+];
+
+// Lucide SVG inner paths for each stakeholder
+const stakeholders = [
+  {
+    name: "TODAY'S NANO",
+    role: 'Media Massa Digital',
+    desc: 'Menyampaikan informasi anomali teknologi baterai ke publik.',
+    kepentingan: 'Mengedepankan trafik (views) dan engagement, bukan akurasi ilmiah.',
+    iconBg: 'rgba(60,226,255,0.08)',
+    iconStroke: '#3CE2FF',
+    iconPath: '<path d="M4 3h16a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a1 1 0 0 1 1-1z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M8 15h5"/>',
+  },
+  {
+    name: 'DEBRIZZ',
+    role: 'Pelaku Industri',
+    desc: 'Pelaku industri baterai konvensional yang mempertanyakan teknologi baru.',
+    kepentingan: 'Menjaga dominasi pasarnya dari ancaman teknologi baru.',
+    iconBg: 'rgba(255,107,53,0.08)',
+    iconStroke: '#FF6B35',
+    iconPath: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>',
+  },
+  {
+    name: 'ATOLABS',
+    role: 'Laboratorium',
+    desc: 'Menjelaskan konsep sains secara netral tanpa opini.',
+    kepentingan: 'Membuktikan sains tanpa memikirkan penerapannya dalam industri.',
+    iconBg: 'rgba(13,148,136,0.1)',
+    iconStroke: '#0D9488',
+    iconPath: '<path d="M10 2v7.31a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.317V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/>',
+  },
+  {
+    name: 'ROSETTA',
+    role: 'Aggregator Data',
+    desc: 'Mengumpulkan banyak informasi dari berbagai sumber.',
+    kepentingan: 'Mengolah informasi yang tersedia tanpa membuang opini inkompeten dan klaim palsu.',
+    iconBg: 'rgba(139,92,246,0.08)',
+    iconStroke: '#8B5CF6',
+    iconPath: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>',
+  },
+];
 ---
 
-<BookLayout title="Operasi Misi 1.0 — ATonauts" scrollable={true}>
+<BookLayout title="Operasi Misi 1.0 — ATonauts">
   <div class="operasi-page">
 
+    <!-- Page Header -->
     <header class="op-header">
       <h1 class="op-title">OPERASI MISI 1.0</h1>
-      <p class="op-subtitle">MENGENAL KEPENTINGAN SEMUA PIHAK TERLIBAT DAN ALUR MISI 1.0</p>
+      <p class="op-sub">MENGENAL KEPENTINGAN SEMUA PIHAK TERLIBAT DAN ALUR MISI 1.0</p>
     </header>
 
-    <div class="op-columns">
+    <!-- Main bordered grid -->
+    <div class="main-grid">
 
-      <!-- LEFT: Alur Misi -->
-      <section class="col-left">
-        <h2 class="col-heading">ALUR MISI 1.0</h2>
-        <div class="timeline">
-          <div class="tl-item">
-            <div class="tl-number">01</div>
-            <div class="tl-line"></div>
-            <div class="tl-label">TEMUKAN ANOMALI</div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-number">02</div>
-            <div class="tl-line"></div>
-            <div class="tl-label">KEMUKAKAN PERTANYAAN</div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-number">03</div>
-            <div class="tl-line"></div>
-            <div class="tl-label">RAMAL DULU, UJI NANTI!</div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-number">04</div>
-            <div class="tl-line"></div>
-            <div class="tl-label">SELIDIKI DAN BUKTIKAN</div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-number">05</div>
-            <div class="tl-line"></div>
-            <div class="tl-label">SAATNYA UJI DUGAAN!</div>
-          </div>
-          <div class="tl-item tl-last">
-            <div class="tl-number">06</div>
-            <div class="tl-label">TENTANG MASA DEPAN</div>
+      <!-- Heading row: both columns at same height -->
+      <div class="grid-head-row">
+        <div class="gh-left">ALUR MISI 1.0</div>
+        <div class="gh-right">SEMUA PIHAK YANG TERLIBAT DALAM MISI 1.0</div>
+      </div>
+
+      <!-- Content row -->
+      <div class="grid-content-row">
+
+        <!-- LEFT: Alur Misi -->
+        <div class="col-alur">
+          <div class="alur-list">
+            {misiSteps.map((step, i) => (
+              <div class="step-wrap">
+                <div class="step-row">
+                  <div class="hex-outer">
+                    <div class="hex-inner">
+                      <img src={`/assets/icons/${step.icon}`} alt="" class="hex-icon" />
+                    </div>
+                  </div>
+                  <div class="step-text">
+                    <span class="step-num">{step.num}</span>
+                    <span class="step-label">{step.label}</span>
+                  </div>
+                </div>
+                {i < misiSteps.length - 1 && <div class="step-conn" />}
+              </div>
+            ))}
           </div>
         </div>
-      </section>
 
-      <!-- RIGHT: Stakeholders -->
-      <section class="col-right">
-        <h2 class="col-heading">SEMUA PIHAK YANG TERLIBAT</h2>
-        <div class="stakeholder-grid">
-
-          <div class="sk-card">
-            <p class="sk-name">TODAY'S NANO</p>
-            <p class="sk-role">Media Massa Digital</p>
-            <p class="sk-desc">Menyampaikan informasi anomali teknologi baterai ke publik.</p>
-            <p class="sk-interest"><strong>Kepentingan:</strong> Mengedepankan trafik (views) dan engagement, bukan akurasi ilmiah.</p>
+        <!-- RIGHT: Stakeholders -->
+        <div class="col-pihak">
+          <div class="pihak-grid">
+            {stakeholders.map((sk, i) => (
+              <div class={`sk-col${i < stakeholders.length - 1 ? ' sk-border-r' : ''}`}>
+                <p class="sk-name">{sk.name}</p>
+                <p class="sk-role">{sk.role}</p>
+                <div class="sk-icon-wrap" style={`background:${sk.iconBg};border-color:${sk.iconStroke}40`}>
+                  <svg
+                    width="30" height="30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke={sk.iconStroke}
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    set:html={sk.iconPath}
+                  />
+                </div>
+                <p class="sk-desc">{sk.desc}</p>
+                <p class="sk-kep-label">KEPENTINGAN:</p>
+                <p class="sk-kep">{sk.kepentingan}</p>
+              </div>
+            ))}
           </div>
-
-          <div class="sk-card">
-            <p class="sk-name">DEBRIZZ</p>
-            <p class="sk-role">Pelaku Industri</p>
-            <p class="sk-desc">Pelaku industri baterai konvensional yang mempertanyakan teknologi baru.</p>
-            <p class="sk-interest"><strong>Kepentingan:</strong> Menjaga dominasi pasarnya dari ancaman teknologi baru.</p>
-          </div>
-
-          <div class="sk-card">
-            <p class="sk-name">ATOLABS</p>
-            <p class="sk-role">Laboratorium</p>
-            <p class="sk-desc">Menjelaskan konsep sains secara netral tanpa opini.</p>
-            <p class="sk-interest"><strong>Kepentingan:</strong> Membuktikan sains tanpa memikirkan penerapannya dalam industri.</p>
-          </div>
-
-          <div class="sk-card">
-            <p class="sk-name">ROSETTA</p>
-            <p class="sk-role">Aggregator Data</p>
-            <p class="sk-desc">Mengumpulkan banyak informasi dari berbagai sumber.</p>
-            <p class="sk-interest"><strong>Kepentingan:</strong> Mengolah informasi yang tersedia tanpa membuang opini inkompeten dan klaim palsu.</p>
-          </div>
-
         </div>
-      </section>
+
+      </div>
     </div>
 
     <!-- Catatan -->
-    <section class="op-note">
-      <p class="op-note-label">Catatan:</p>
-      <p>
-        Semua pihak yang terlibat (stakeholder) dalam misi 1.0 akan datang sewaktu-waktu dalam penyelidikanmu.
-        Tidak ada klaim yang paling benar, yang ada adalah perbedaan sudut pandang dari tiap pihak yang terlibat.
-      </p>
-      <p style="margin-top:8px"><em>Dan perbedaan itu adalah data, bukan eror.</em></p>
-    </section>
+    <div class="catatan">
+      <p class="catatan-label">CATATAN:</p>
+      <p>Semua pihak yang terlibat (stakeholder) dalam misi 1.0 akan hadir dalam misi penyelidikanmu. Tidak ada klaim yang paling benar, yang ada adalah perbedaan sudut pandang dari tiap pihak yang terlibat.</p>
+      <p>Dan perbedaan itu adalah data, bukan eror.</p>
+    </div>
 
-    <!-- Peran Philaerners -->
-    <section class="op-peran">
-      <p class="op-peran-label">PERAN PHILAERNERS:</p>
+    <!-- Peran -->
+    <div class="peran">
+      <p class="peran-label">PERAN PHILAERNERS:</p>
       <p>Kamu adalah Philaerners. Kamu tidak mencari jawaban benar.</p>
-      <p style="margin-top:6px">
-        Tugas Philaerners adalah membangun keputusan terbaik dalam menilai teknologi baterai, untuk menyimpan energi hijau,
-        di tengah konflik informasi oleh semua pihak yang terlibat dalam misi ini.
-      </p>
-      <p class="op-tagline"><em>Jangan Percaya. Selidiki. Dan Buktikan.</em></p>
-    </section>
+      <p>Tugas Philaerners adalah membangun keputusan terbaik dalam menilai teknologi baterai, untuk menyimpan energi hijau, di tengah konflik informasi oleh semua pihak yang terlibat dalam misi ini.</p>
+      <p class="peran-tagline">Jangan Percaya. Selidiki. Dan Buktikan.</p>
+    </div>
 
     <!-- Nav button -->
     <div class="op-footer">
-      <a href="/misi/misi-01" class="btn btn-primary op-btn">
+      <a href="/misi/misi-01" class="btn btn-nav op-btn">
         LANJUTKAN PENYELIDIKAN
-        <img src="/assets/icons/RightArrow_Icons.svg" alt="" class="btn-icon" />
+        <img src="/assets/icons/RightArrow_Icons.svg" alt="" class="btn-arr" />
       </a>
     </div>
 
@@ -118,223 +151,290 @@ import BookLayout from '../layouts/BookLayout.astro';
 </BookLayout>
 
 <style>
+  /* ── Page shell ── */
   .operasi-page {
-    padding: 24px 20px 32px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 10px;
+    padding: 14px 0 24px;
   }
+  .operasi-page::-webkit-scrollbar { display: none; }
 
-  /* Header */
-  .op-header { display: flex; flex-direction: column; gap: 4px; }
+  /* ── Header ── */
+  .op-header { padding: 0 14px; flex-shrink: 0; }
+
   .op-title {
     font-family: var(--font-heading);
-    font-size: 28px;
+    font-size: 26px;
     color: var(--light);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
   }
-  .op-subtitle {
+  .op-sub {
     font-family: var(--font-tag);
-    font-size: 10px;
-    color: rgba(245, 247, 250, 0.5);
-    letter-spacing: 0.06em;
-  }
-
-  /* Two-column layout */
-  .op-columns {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-
-  /* On mobile: stack vertically */
-  @media (max-width: 480px) {
-    .op-columns { flex-direction: column; }
-  }
-
-  .col-heading {
-    font-family: var(--font-tag);
-    font-size: 10px;
-    color: var(--light);
-    letter-spacing: 0.08em;
-    border-bottom: 1px solid rgba(245, 247, 250, 0.15);
-    padding-bottom: 8px;
-    margin-bottom: 14px;
-  }
-
-  /* Left: Timeline */
-  .col-left { flex: 0 0 120px; }
-
-  .timeline { display: flex; flex-direction: column; }
-
-  .tl-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    position: relative;
-    padding-bottom: 4px;
-  }
-
-  .tl-number {
-    font-family: var(--font-heading);
-    font-size: 18px;
-    color: var(--cyan);
-    line-height: 1;
-    flex-shrink: 0;
-    min-width: 28px;
-    padding-top: 2px;
-  }
-
-  .tl-label {
-    font-family: var(--font-tag);
-    font-size: 9px;
-    color: var(--light);
-    letter-spacing: 0.04em;
+    font-size: 7px;
+    color: rgba(245,247,250,0.38);
+    letter-spacing: 0.05em;
+    margin-top: 3px;
     line-height: 1.4;
-    padding-top: 4px;
+    font-style: italic;
   }
 
-  /* Dashed connector line between steps */
-  .tl-line {
-    position: absolute;
-    left: 13px;
-    top: 22px;
-    bottom: -10px;
-    width: 1px;
-    border-left: 1px dashed rgba(60, 226, 255, 0.35);
-  }
-
-  /* Right: Stakeholder grid */
-  .col-right { flex: 1; }
-
-  .stakeholder-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .sk-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(245,247,250,0.12);
-    border-radius: 6px;
-    padding: 10px;
+  /* ── Main grid container ── */
+  .main-grid {
+    flex-shrink: 0;
+    border: 1px solid rgba(245,247,250,0.25);
+    margin: 0 14px;
     display: flex;
     flex-direction: column;
+  }
+
+  /* Heading row */
+  .grid-head-row {
+    display: flex;
+    border-bottom: 1px solid rgba(245,247,250,0.2);
+    flex-shrink: 0;
+  }
+  .gh-left {
+    width: 92px;
+    flex-shrink: 0;
+    font-family: var(--font-tag);
+    font-size: 7px;
+    color: var(--light);
+    letter-spacing: 0.07em;
+    padding: 6px 6px 6px 8px;
+    border-right: 1px solid rgba(245,247,250,0.2);
+    display: flex;
+    align-items: center;
+  }
+  .gh-right {
+    flex: 1;
+    font-family: var(--font-tag);
+    font-size: 7px;
+    color: var(--light);
+    letter-spacing: 0.06em;
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    line-height: 1.35;
+  }
+
+  /* Content row */
+  .grid-content-row {
+    display: flex;
+    flex: 1;
+  }
+
+  /* ── LEFT: Alur Misi ── */
+  .col-alur {
+    width: 92px;
+    flex-shrink: 0;
+    border-right: 1px solid rgba(245,247,250,0.2);
+  }
+  .alur-list {
+    padding: 10px 5px 10px 7px;
+    display: flex;
+    flex-direction: column;
+  }
+  .step-wrap { display: flex; flex-direction: column; }
+  .step-row {
+    display: flex;
+    align-items: flex-start;
     gap: 4px;
   }
+  .step-conn {
+    width: 1px;
+    height: 9px;
+    border-left: 1px dashed rgba(245,247,250,0.22);
+    margin-left: 20px;
+  }
+
+  /* Octagon hex icon */
+  .hex-outer {
+    width: 42px;
+    height: 42px;
+    clip-path: polygon(30% 0%,70% 0%,100% 30%,100% 70%,70% 100%,30% 100%,0% 70%,0% 30%);
+    background: rgba(245,247,250,0.65);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .hex-inner {
+    width: 36px;
+    height: 36px;
+    clip-path: polygon(30% 0%,70% 0%,100% 30%,100% 70%,70% 100%,30% 100%,0% 70%,0% 30%);
+    background: #000;
+    display: grid;
+    place-items: center;
+  }
+  .hex-icon {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+  }
+  .step-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 3px;
+    min-width: 0;
+  }
+  .step-num {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    color: var(--light);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .step-label {
+    font-family: var(--font-tag);
+    font-size: 6px;
+    color: var(--light);
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+    white-space: pre-line;
+    margin-top: 1px;
+  }
+
+  /* ── RIGHT: Stakeholders ── */
+  .col-pihak { flex: 1; min-width: 0; }
+  .pihak-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 100%;
+  }
+  .sk-col {
+    padding: 8px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+  .sk-border-r { border-right: 1px solid rgba(245,247,250,0.15); }
 
   .sk-name {
     font-family: var(--font-tag);
-    font-size: 9px;
+    font-size: 6.5px;
     color: var(--cyan);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
   }
-
   .sk-role {
     font-family: var(--font-caption);
-    font-size: 10px;
+    font-size: 7px;
     font-style: italic;
-    color: rgba(245, 247, 250, 0.55);
+    color: rgba(245,247,250,0.42);
+    line-height: 1.3;
+  }
+
+  /* Lucide icon box replacing image placeholder */
+  .sk-icon-wrap {
+    width: 100%;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    border-radius: 3px;
+    border: 1px solid;
+    flex-shrink: 0;
+    margin: 3px 0;
   }
 
   .sk-desc {
-    font-size: 11px;
-    color: rgba(245,247,250,0.75);
-    line-height: 1.4;
+    font-size: 7px;
+    color: rgba(245,247,250,0.7);
+    line-height: 1.45;
   }
-
-  .sk-interest {
-    font-size: 10px;
-    color: rgba(245,247,250,0.6);
-    line-height: 1.4;
-    margin-top: 4px;
-    border-top: 1px solid rgba(245,247,250,0.08);
-    padding-top: 6px;
-  }
-
-  .sk-interest strong {
-    color: var(--cyan);
-    font-weight: 400;
+  .sk-kep-label {
     font-family: var(--font-tag);
-    font-size: 9px;
+    font-size: 6px;
+    color: var(--cyan);
     letter-spacing: 0.04em;
-    display: block;
-    margin-bottom: 2px;
+    margin-top: 2px;
+  }
+  .sk-kep {
+    font-size: 7px;
+    color: rgba(245,247,250,0.58);
+    line-height: 1.45;
   }
 
-  /* Catatan */
-  .op-note {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(245,247,250,0.12);
-    border-left: 3px solid var(--orange);
-    border-radius: 0 6px 6px 0;
-    padding: 14px;
-    font-size: 13px;
-    line-height: 1.6;
-    color: rgba(245,247,250,0.8);
+  /* ── Catatan ── */
+  .catatan {
+    flex-shrink: 0;
+    border: 1px solid rgba(245,247,250,0.22);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0 14px;
   }
-
-  .op-note-label {
+  .catatan-label {
     font-family: var(--font-tag);
-    font-size: 10px;
-    color: var(--orange);
-    letter-spacing: 0.06em;
-    margin-bottom: 6px;
-  }
-
-  /* Peran */
-  .op-peran {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(245,247,250,0.12);
-    border-radius: 6px;
-    padding: 14px;
-    font-size: 13px;
-    line-height: 1.6;
-    color: rgba(245,247,250,0.8);
-  }
-
-  .op-peran-label {
-    font-family: var(--font-tag);
-    font-size: 10px;
+    font-size: 8px;
     color: var(--cyan);
-    letter-spacing: 0.06em;
-    margin-bottom: 6px;
+    letter-spacing: 0.07em;
+  }
+  .catatan p:not(.catatan-label) {
+    font-size: 9.5px;
+    color: rgba(245,247,250,0.78);
+    line-height: 1.55;
   }
 
-  .op-tagline {
-    margin-top: 10px;
+  /* ── Peran ── */
+  .peran {
+    flex-shrink: 0;
+    background: rgba(245,247,250,0.04);
+    border: 1px solid rgba(245,247,250,0.18);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0 14px;
+  }
+  .peran-label {
+    font-family: var(--font-tag);
+    font-size: 8px;
+    color: var(--cyan);
+    letter-spacing: 0.07em;
+  }
+  .peran p:not(.peran-label):not(.peran-tagline) {
+    font-size: 9.5px;
+    color: rgba(245,247,250,0.78);
+    line-height: 1.55;
+  }
+  .peran-tagline {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 13px;
     color: var(--light);
-    font-size: 14px;
     text-align: center;
+    margin-top: 4px;
   }
 
-  /* Footer */
+  /* ── Footer ── */
   .op-footer {
+    flex-shrink: 0;
     display: flex;
     justify-content: flex-end;
-    margin-top: 8px;
+    padding: 0 14px;
+    margin-top: 4px;
   }
-
   .op-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 20px;
-    background: var(--teal);
-    color: #fff;
-    border-radius: 8px;
-    font-family: var(--font-tag);
-    font-size: 11px;
+    padding: 10px 16px;
+    font-size: 10px;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: opacity 0.2s;
   }
-  .op-btn:hover { opacity: 0.85; }
-
-  .btn-icon {
+  .btn-arr {
     width: 14px;
     height: 14px;
-    filter: invert(1);
+    filter: invert(60%) sepia(80%) saturate(600%) hue-rotate(355deg) brightness(110%);
   }
 </style>

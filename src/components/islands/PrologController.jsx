@@ -82,12 +82,10 @@ export default function PrologController() {
 
       <style>{`
         .prolog-footer {
-          position: fixed;
+          position: absolute;
           bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100%;
-          max-width: 430px;
+          left: 0;
+          right: 0;
           padding: 16px 20px;
           background: linear-gradient(to top, #1A1F26 70%, transparent);
           display: flex;

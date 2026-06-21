@@ -86,8 +86,14 @@ function parseMarkdown(text: string): string {
               Ponsel Setipis Kartu Debit, Tetapi Baterainya Tahan Lebih Lama dari Niatmu Begadang! ...Bagaimana Mungkin?!
             </p>
             <p class="news-byline">
-              <span>&#128100; Sereh Bliezenski</span>
-              <span>&#128197; 01/01/2024</span>
+              <span class="byline-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Sereh Bliezenski
+              </span>
+              <span class="byline-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                01/01/2024
+              </span>
             </p>
           </div>
         </div>
@@ -100,15 +106,21 @@ function parseMarkdown(text: string): string {
             <p class="hl-title">HIGHLIGHT BATERAI MODERN</p>
             <div class="hl-items">
               <div class="hl-item">
-                <span class="hl-dot">&#x1F50B;</span>
+                <span class="hl-dot">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/></svg>
+                </span>
                 <span>Daya yang tersimpan dapat digunakan hingga berjam-jam.</span>
               </div>
               <div class="hl-item">
-                <span class="hl-dot">&#x26A1;</span>
+                <span class="hl-dot">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </span>
                 <span>Pengisian daya super cepat.</span>
               </div>
               <div class="hl-item">
-                <span class="hl-dot">&#x1F321;</span>
+                <span class="hl-dot">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+                </span>
                 <span>Lebih stabil terhadap panas dan umur baterai panjang.</span>
               </div>
             </div>
@@ -296,6 +308,12 @@ function parseMarkdown(text: string): string {
     color: rgba(245,247,250,0.4);
   }
 
+  .byline-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
   .news-text {
     padding: 12px 14px;
     font-size: 13px;
@@ -352,7 +370,12 @@ function parseMarkdown(text: string): string {
     line-height: 1.4;
   }
 
-  .hl-dot { flex-shrink: 0; }
+  .hl-dot {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    color: var(--cyan);
+  }
 
   .hl-text {
     font-size: 11px;

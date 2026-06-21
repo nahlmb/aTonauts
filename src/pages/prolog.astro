@@ -4,7 +4,7 @@ import VideoPlayer from '../components/islands/VideoPlayer.jsx';
 import PrologController from '../components/islands/PrologController.jsx';
 ---
 
-<BookLayout title="Prolog — ATonauts" scrollable={true}>
+<BookLayout title="Prolog — ATonauts">
   <main class="prolog-page">
 
     <header class="prolog-header">
@@ -12,53 +12,63 @@ import PrologController from '../components/islands/PrologController.jsx';
       <p class="prolog-subtitle">Mengapa Misi Ini Hadir?</p>
     </header>
 
-    <section class="prolog-video-section">
+    <section class="prolog-video">
       <VideoPlayer client:load src="/assets/video/prolog_intro.mp4" />
     </section>
 
-    <section class="prolog-team-section">
-      <p class="team-label">Diinisiasi Oleh</p>
-      <p class="team-org">Philaerners-Squad</p>
-      <p class="team-role-desc">Tim Pengembang Misi</p>
-
+    <section class="prolog-team">
+      <p class="team-label">Diinisiasi Oleh — <strong>Philaerners-Squad</strong></p>
+      <p class="team-desc">Tim Pengembang Misi</p>
       <div class="team-cards">
         <article class="team-card">
           <img src="/assets/images/foto_tim_1.png" alt="Nailah Tharik Baeshin" class="team-photo" />
-          <p class="team-name">NAILAH THARIK BAESHIN</p>
-          <p class="team-role">Lead Researcher &amp; Developer</p>
+          <div class="team-info">
+            <p class="team-name">NAILAH THARIK BAESHIN</p>
+            <p class="team-role">Lead Researcher &amp; Developer</p>
+          </div>
         </article>
         <article class="team-card">
           <img src="/assets/images/foto_tim_2.jpg" alt="Achmad Ridwan" class="team-photo" />
-          <p class="team-name">ACHMAD RIDWAN</p>
-          <p class="team-role">Design &amp; Curriculum Specialist</p>
+          <div class="team-info">
+            <p class="team-name">ACHMAD RIDWAN</p>
+            <p class="team-role">Design &amp; Curriculum</p>
+          </div>
         </article>
         <article class="team-card">
           <img src="/assets/images/foto_tim_3.jpg" alt="Hanhan Dianhar" class="team-photo" />
-          <p class="team-name">HANHAN DIANHAR</p>
-          <p class="team-role">Science Content Expert</p>
+          <div class="team-info">
+            <p class="team-name">HANHAN DIANHAR</p>
+            <p class="team-role">Science Content Expert</p>
+          </div>
         </article>
       </div>
     </section>
 
   </main>
 
-  <!-- MASUK button + Login modal — all in one React island -->
   <PrologController client:load />
 </BookLayout>
 
 <style>
   .prolog-page {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 28px 20px 100px;
-    gap: 28px;
+    padding: 16px 16px 80px;
+    gap: 14px;
+    min-height: 0;
+    overflow: hidden;
   }
 
-  .prolog-header { text-align: center; }
+  /* Header */
+  .prolog-header {
+    flex-shrink: 0;
+    text-align: center;
+  }
 
   .prolog-title {
     font-family: var(--font-heading);
-    font-size: 34px;
+    font-size: 28px;
     color: var(--cyan);
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -66,80 +76,105 @@ import PrologController from '../components/islands/PrologController.jsx';
 
   .prolog-subtitle {
     font-style: italic;
-    font-size: 15px;
+    font-size: 13px;
     color: var(--cyan);
-    margin-top: 4px;
+    margin-top: 2px;
+    opacity: 0.8;
+  }
+
+  /* Video */
+  .prolog-video {
+    flex-shrink: 0;
   }
 
   /* Team */
-  .prolog-team-section {
+  .prolog-team {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 3px;
+    min-height: 0;
+    margin-left: -16px;
+    margin-right: -16px;
   }
 
   .team-label {
     font-style: italic;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--cyan);
+    flex-shrink: 0;
+    padding-left: 16px;
   }
 
-  .team-org {
-    font-size: 15px;
-    color: var(--light);
+  .team-label strong {
+    font-style: normal;
+    font-weight: 400;
   }
 
-  .team-role-desc {
+  .team-desc {
     font-style: italic;
-    font-size: 13px;
-    color: rgba(245, 247, 250, 0.6);
+    font-size: 10px;
+    color: rgba(245, 247, 250, 0.45);
+    flex-shrink: 0;
+    padding-left: 16px;
   }
 
   .team-cards {
+    flex: 1;
     display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: none;
-    margin-top: 4px;
+    gap: 4px;
+    margin-top: 8px;
+    min-height: 0;
   }
-  .team-cards::-webkit-scrollbar { display: none; }
 
   .team-card {
-    flex: 0 0 140px;
-    border: 1px solid var(--light);
-    border-radius: 8px;
+    flex: 1;
+    min-width: 0;
+    border: 1px solid rgba(245, 247, 250, 0.18);
+    border-radius: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-bottom: 12px;
+  }
+
+  .team-card:first-child {
+    border-left: none;
+  }
+
+  .team-card:last-child {
+    border-right: none;
   }
 
   .team-photo {
     width: 100%;
-    aspect-ratio: 1;
+    flex: 1;
+    min-height: 0;
     object-fit: cover;
     object-position: top;
     display: block;
   }
 
+  .team-info {
+    padding: 6px 4px 8px;
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
   .team-name {
     font-family: var(--font-tag);
-    font-size: 9.5px;
+    font-size: 7px;
     color: var(--light);
     text-align: center;
-    margin-top: 10px;
-    padding: 0 8px;
-    line-height: 1.4;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
   }
 
   .team-role {
     font-style: italic;
-    font-size: 11px;
-    color: rgba(245, 247, 250, 0.65);
+    font-size: 8.5px;
+    color: rgba(245, 247, 250, 0.5);
     text-align: center;
-    padding: 4px 8px 0;
-    line-height: 1.4;
+    margin-top: 2px;
+    line-height: 1.3;
   }
 </style>
