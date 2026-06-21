@@ -35,8 +35,8 @@ export default function VideoPlayer({ src }) {
           position: relative;
           width: 100%;
           aspect-ratio: 16/9;
-          background: #0a0d11;
-          border: 1px solid rgba(245, 247, 250, 0.15);
+          background: #000000;
+          border: 1.5px solid rgba(245, 247, 250, 0.85);
           border-radius: 8px;
           overflow: hidden;
         }

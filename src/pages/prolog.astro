@@ -7,33 +7,42 @@ import PrologController from '../components/islands/PrologController.jsx';
 <BookLayout title="Prolog — ATonauts">
   <main class="prolog-page">
 
+    <!-- Page Header -->
     <header class="prolog-header">
       <h1 class="prolog-title">PROLOG</h1>
       <p class="prolog-subtitle">Mengapa Misi Ini Hadir?</p>
     </header>
 
+    <!-- Video Container -->
     <section class="prolog-video">
       <VideoPlayer client:load src="/assets/video/prolog_intro.mp4" />
     </section>
 
+    <!-- Team section -->
     <section class="prolog-team">
-      <p class="team-label">Diinisiasi Oleh — <strong>Philaerners-Squad</strong></p>
-      <p class="team-desc">Tim Pengembang Misi</p>
+      <div class="team-header">
+        <p class="team-initiat">Diinisiasi Oleh</p>
+        <p class="team-squad">Philaerners-Squad</p>
+        <p class="team-desc">Tim Pengembang Misi</p>
+      </div>
+
       <div class="team-cards">
         <article class="team-card">
-          <img src="/assets/images/foto_tim_1.png" alt="Nailah Tharik Baeshin" class="team-photo" />
+          <img src="/assets/images/foto_tim_1.png" alt="Nailah Tharik" class="team-photo" />
           <div class="team-info">
-            <p class="team-name">NAILAH THARIK BAESHIN</p>
+            <p class="team-name">NAILAH THARIK</p>
             <p class="team-role">Lead Researcher &amp; Developer</p>
           </div>
         </article>
+
         <article class="team-card">
           <img src="/assets/images/foto_tim_2.jpg" alt="Achmad Ridwan" class="team-photo" />
           <div class="team-info">
             <p class="team-name">ACHMAD RIDWAN</p>
-            <p class="team-role">Design &amp; Curriculum</p>
+            <p class="team-role">Design &amp; Curriculum Specialist</p>
           </div>
         </article>
+
         <article class="team-card">
           <img src="/assets/images/foto_tim_3.jpg" alt="Hanhan Dianhar" class="team-photo" />
           <div class="team-info">
@@ -50,131 +59,135 @@ import PrologController from '../components/islands/PrologController.jsx';
 </BookLayout>
 
 <style>
+  /* ── Page Shell ── */
   .prolog-page {
     flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
-    padding: 16px 16px 80px;
-    gap: 14px;
-    min-height: 0;
-    overflow: hidden;
+    gap: 16px;
+    padding: 24px 0 80px;
+    background: #000000;
   }
+  .prolog-page::-webkit-scrollbar { display: none; }
 
-  /* Header */
+  /* ── Header ── */
   .prolog-header {
+    padding: 0 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex-shrink: 0;
-    text-align: center;
   }
-
   .prolog-title {
     font-family: var(--font-heading);
-    font-size: 28px;
-    color: var(--cyan);
-    letter-spacing: 0.06em;
+    font-size: 32px;
+    color: #3CE2FF;
+    text-shadow: 0 0 12px rgba(60, 226, 255, 0.6);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1.1;
   }
-
   .prolog-subtitle {
+    align-self: flex-start;
+    font-family: var(--font-body);
     font-style: italic;
     font-size: 13px;
     color: var(--cyan);
-    margin-top: 2px;
-    opacity: 0.8;
+    margin-top: 14px;
+    font-weight: 700;
   }
 
-  /* Video */
+  /* ── Video Player ── */
   .prolog-video {
+    padding: 0 14px;
     flex-shrink: 0;
   }
 
-  /* Team */
+  /* ── Team section ── */
   .prolog-team {
-    flex: 1;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .team-header {
+    padding: 0 14px;
     display: flex;
     flex-direction: column;
     gap: 3px;
-    min-height: 0;
-    margin-left: -16px;
-    margin-right: -16px;
   }
-
-  .team-label {
-    font-style: italic;
-    font-size: 12px;
+  .team-initiat {
+    font-family: var(--font-body);
+    font-size: 13px;
     color: var(--cyan);
-    flex-shrink: 0;
-    padding-left: 16px;
+    font-weight: 700;
   }
-
-  .team-label strong {
-    font-style: normal;
-    font-weight: 400;
+  .team-squad {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--light);
   }
-
   .team-desc {
+    font-family: var(--font-body);
     font-style: italic;
-    font-size: 10px;
+    font-size: 11px;
     color: rgba(245, 247, 250, 0.45);
-    flex-shrink: 0;
-    padding-left: 16px;
   }
 
+  /* ── Team Cards Grid ── */
   .team-cards {
-    flex: 1;
-    display: flex;
-    gap: 4px;
-    margin-top: 8px;
-    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 0 14px;
   }
-
   .team-card {
-    flex: 1;
-    min-width: 0;
-    border: 1px solid rgba(245, 247, 250, 0.18);
-    border-radius: 0;
-    overflow: hidden;
+    border: 1px solid rgba(245, 247, 250, 0.4);
+    border-radius: 8px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.02);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    min-width: 0;
   }
-
-  .team-card:first-child {
-    border-left: none;
-  }
-
-  .team-card:last-child {
-    border-right: none;
-  }
-
   .team-photo {
     width: 100%;
-    flex: 1;
-    min-height: 0;
+    aspect-ratio: 1 / 1.1;
     object-fit: cover;
-    object-position: top;
+    object-position: center top;
     display: block;
+    margin-bottom: 8px;
+    border-radius: 2px;
   }
-
   .team-info {
-    padding: 6px 4px 8px;
-    flex-shrink: 0;
-    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
   }
-
   .team-name {
     font-family: var(--font-tag);
-    font-size: 7px;
+    font-size: 7.5px;
     color: var(--light);
-    text-align: center;
-    line-height: 1.35;
+    font-weight: 700;
+    line-height: 1.25;
+    text-transform: uppercase;
+    margin-bottom: 3px;
     letter-spacing: 0.02em;
   }
-
   .team-role {
+    font-family: var(--font-caption);
+    font-size: 6px;
     font-style: italic;
-    font-size: 8.5px;
-    color: rgba(245, 247, 250, 0.5);
-    text-align: center;
-    margin-top: 2px;
-    line-height: 1.3;
+    color: rgba(245, 247, 250, 0.55);
+    line-height: 1.2;
   }
 </style>

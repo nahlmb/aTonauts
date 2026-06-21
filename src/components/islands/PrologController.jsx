@@ -83,29 +83,28 @@ export default function PrologController() {
       <style>{`
         .prolog-footer {
           position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 16px 20px;
-          background: linear-gradient(to top, #1A1F26 70%, transparent);
-          display: flex;
-          justify-content: center;
+          bottom: 24px;
+          right: 20px;
           z-index: 10;
         }
         .masuk-btn {
-          min-width: 160px;
-          padding: 12px 32px;
-          background: transparent;
-          color: #FF6B35;
-          border: 1px solid #FF6B35;
-          border-radius: 6px;
+          min-width: 140px;
+          padding: 10px 24px;
+          background: #000000;
+          color: #ffffff;
+          border: 1.5px solid #FF6B35;
+          border-radius: 0;
           font-family: 'FiraCode', monospace;
-          font-size: 12px;
-          letter-spacing: 0.12em;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
           cursor: pointer;
-          animation: glow-pulse 2s ease-in-out infinite;
-          transition: background 0.2s, color 0.2s;
+          transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        .masuk-btn:hover {
+          background: rgba(255, 107, 53, 0.15);
+          box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
         }
         .masuk-btn.active,
         .masuk-btn:active {
