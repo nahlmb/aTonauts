@@ -41,7 +41,7 @@ const stakeholders = [
     desc: 'Menyampaikan informasi anomali teknologi baterai ke publik.',
     kepentingan: 'Mengedepankan trafik (views) dan engagement, bukan akurasi ilmiah.',
     illustrationSvg: `
-      <svg width="56" height="56" viewBox="0 0 80 80" class="sk-illustration">
+      <svg width="64" height="64" viewBox="0 0 80 80" class="sk-illustration">
         <!-- Newspaper body -->
         <rect x="18" y="10" width="44" height="56" rx="2" fill="#12151a" stroke="#ffffff" stroke-width="1.5"/>
         <!-- Newspaper header block -->
@@ -73,7 +73,7 @@ const stakeholders = [
     desc: 'Pelaku industri baterai konvensional yang mempertanyakan teknologi baru.',
     kepentingan: 'Menjaga dominasi pasarnya dari ancaman teknologi baru.',
     illustrationSvg: `
-      <svg width="56" height="56" viewBox="0 0 80 80" class="sk-illustration">
+      <svg width="64" height="64" viewBox="0 0 80 80" class="sk-illustration">
         <!-- Background circle -->
         <circle cx="40" cy="40" r="30" fill="#0f172a" stroke="#FF6B35" stroke-width="1.5"/>
         <g clip-path="url(#debrizz-avatar-clip)">
@@ -105,7 +105,7 @@ const stakeholders = [
     desc: 'Menjelaskan konsep sains secara netral tanpa opini.',
     kepentingan: 'Membuktikan sains tanpa memikirkan penerapannya dalam industri.',
     illustrationSvg: `
-      <svg width="56" height="56" viewBox="0 0 80 80" class="sk-illustration">
+      <svg width="64" height="64" viewBox="0 0 80 80" class="sk-illustration">
         <!-- Magnetic stirrer platform -->
         <rect x="18" y="50" width="44" height="18" rx="2" fill="#1b2535" stroke="#0D9488" stroke-width="1.5"/>
         <!-- Knobs -->
@@ -126,7 +126,7 @@ const stakeholders = [
     desc: 'Mengumpulkan banyak informasi dari berbagai sumber.',
     kepentingan: 'Mengolah informasi yang tersedia tanpa membuang opini inkompeten dan klaim palsu.',
     illustrationSvg: `
-      <svg width="56" height="56" viewBox="0 0 80 80" class="sk-illustration">
+      <svg width="64" height="64" viewBox="0 0 80 80" class="sk-illustration">
         <!-- Robot Head -->
         <rect x="22" y="16" width="36" height="24" rx="6" fill="#1b2535" stroke="#ffffff" stroke-width="1.5"/>
         <!-- Screen area -->
@@ -387,13 +387,13 @@ const stakeholders = [
   /* ── RIGHT: Stakeholders ── */
   .stakeholders-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
     flex: 1;
   }
   .stakeholder-card {
     border: 1px solid rgba(245, 247, 250, 0.25);
-    padding: 10px 4px 12px;
+    padding: 12px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -424,7 +424,7 @@ const stakeholders = [
   }
   .sk-illustration-container {
     width: 100%;
-    height: 64px;
+    height: 72px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -432,8 +432,8 @@ const stakeholders = [
     flex-shrink: 0;
   }
   .sk-illustration {
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
     max-width: 100%;
     max-height: 100%;
   }
@@ -542,5 +542,55 @@ const stakeholders = [
     width: 14px;
     height: 14px;
     filter: invert(60%) sepia(80%) saturate(600%) hue-rotate(355deg) brightness(110%);
+  }
+
+  /* ── Responsive adjustments for very small screens ── */
+  @media (max-width: 380px) {
+    .op-title {
+      font-size: 26px;
+    }
+    .left-column {
+      width: 110px;
+    }
+    .columns-container {
+      gap: 8px;
+      margin: 0 10px;
+    }
+    .stakeholders-grid {
+      gap: 6px;
+    }
+    .stakeholder-card {
+      padding: 10px 6px;
+    }
+    .sk-name {
+      font-size: 11px;
+    }
+    .sk-role {
+      font-size: 9px;
+    }
+    .sk-desc, .sk-kep, .sk-kep-label {
+      font-size: 10px;
+    }
+    .sk-illustration-container {
+      height: 64px;
+    }
+    .sk-illustration {
+      width: 56px;
+      height: 56px;
+    }
+    .step-label-cyan {
+      font-size: 7.5px;
+    }
+    .catatan, .peran {
+      margin: 12px 10px 0;
+      padding: 12px 14px;
+    }
+    .catatan p:not(.catatan-label), 
+    .peran p:not(.peran-label):not(.peran-tagline) {
+      font-size: 11px;
+    }
+    .peran-tagline {
+      font-size: 12px;
+    }
   }
 </style>
