@@ -1,0 +1,36 @@
+{
+  "slug": "misi-01",
+  "number": "01",
+  "title": "TEMUKAN ANOMALI",
+  "subtitle": "Temukan informasi tidak biasa dari berita Today's Nano",
+  "progressDots": 1,
+  "totalDots": 6,
+  "protocol": {
+    "status": "Observasi",
+    "outputLines": [
+      { "icon": null, "text": "Satu informasi janggal (anomali) tentang teknologi baterai." }
+    ],
+    "panduan": [
+      { "icon": null, "text": "Tidak ada jawaban benar. Fokus pada kejanggalan fenomena teknologi." }
+    ]
+  },
+  "content": {
+    "type": "news_article",
+    "newsImages": [
+      "/assets/images/Header_Today_sNano.png"
+    ],
+    "newsText": "**JAKARTA, TODAY'S NANO** — Sekitar 15 tahun silam, ponsel identik dengan bentuk yang besar dan berat. Kini, ponsel modern hadir dengan bodi yang jauh lebih tipis dan ringan, bahkan dapat dilipat seperti origami!\n\nPerampingan ini juga terlihat pada bagian dalam ponsel modern, seperti baterainya. Menariknya, meskipun ukuran baterai semakin tipis dan ringan, kapasitas baterainya justru meningkat.\n\nBaterai 'ramping' ini bisa menemani kamu *scroll* semalaman, tidur, bangun, lalu *scroll* lagi… bahkan sempat untuk *streaming* drakor 2521 (Twenty-Five Twenty-One) di Netflix hingga pukul 3 pagi, dan 'voilà' kamu ketiduran. Tetapi hebatnya daya baterai ponselmu masih di angka 80%!"
+  },
+  "kapsulWaktu": [
+    {
+      "id": "anomali",
+      "label": null,
+      "hint": "tulis hasil temuanmu di sini...",
+      "charLimit": 300
+    }
+  ],
+  "navigation": {
+    "prev": "/operasi",
+    "next": "/misi/misi-02"
+  }
+}

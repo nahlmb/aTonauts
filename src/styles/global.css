@@ -1,0 +1,283 @@
+/* ============================================================
+   ATONAUTS — Global Design System
+   ============================================================ */
+
+/* --- Font Faces --- */
+@font-face {
+  font-family: 'FiraSansCondensed';
+  src: url('/assets/fonts/FiraSansCondensed-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GoogleSans';
+  src: url('/assets/fonts/GoogleSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FiraCode';
+  src: url('/assets/fonts/FiraCode-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GoogleSansCode';
+  src: url('/assets/fonts/GoogleSansCode-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* --- CSS Custom Properties --- */
+:root {
+  --bg:             #1A1F26;
+  --bg-outer:       #0a0d11;
+  --bg-card:        rgba(255, 255, 255, 0.04);
+  --bg-card-border: rgba(245, 247, 250, 0.2);
+
+  --cyan:           #3CE2FF;
+  --light:          #F5F7FA;
+  --orange:         #FF6B35;
+  --teal:           #0D9488;
+  --orange-dim:     rgba(255, 107, 53, 0.15);
+
+  --font-heading:   'FiraSansCondensed', sans-serif;
+  --font-body:      'GoogleSans', sans-serif;
+  --font-tag:       'FiraCode', monospace;
+  --font-caption:   'GoogleSansCode', monospace;
+
+  --book-width:     430px;
+  --header-h:       60px;
+  --footer-h:       64px;
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg-outer);
+  color: var(--light);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  min-height: 100dvh;
+}
+
+/* --- Book Frame --- */
+/* The central "book" — portrait container at center of screen */
+.book-frame {
+  width: 100%;
+  max-width: var(--book-width);
+  height: 100dvh;
+  background: var(--bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Pages that need to scroll freely beyond viewport use this modifier */
+.book-frame--scroll {
+  height: auto;
+  min-height: 100dvh;
+  overflow: visible;
+}
+
+/* On desktop: subtle side borders to frame the book */
+@media (min-width: 500px) {
+  .book-frame {
+    box-shadow: 0 0 60px rgba(60, 226, 255, 0.04), -1px 0 0 rgba(255,255,255,0.04), 1px 0 0 rgba(255,255,255,0.04);
+  }
+}
+
+/* --- Typography Scale --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+.text-tag {
+  font-family: var(--font-tag);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.text-caption {
+  font-family: var(--font-caption);
+  font-size: 12px;
+}
+
+.text-cyan   { color: var(--cyan); }
+.text-orange { color: var(--orange); }
+.text-light  { color: var(--light); }
+.text-muted  { color: rgba(245, 247, 250, 0.5); }
+
+/* --- Animations --- */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(255, 107, 53, 0.5), 0 0 0 1px var(--orange); }
+  50%       { box-shadow: 0 0 18px rgba(255, 107, 53, 0.8), 0 0 0 1px var(--orange); }
+}
+
+@keyframes arrow-hint {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50%       { transform: translateX(8px); opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes capsule-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-family: var(--font-tag);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-nav {
+  background: transparent;
+  color: var(--orange);
+  border: 1px solid var(--orange);
+  animation: glow-pulse 2s ease-in-out infinite;
+  padding: 10px 16px;
+}
+
+.btn-nav:active,
+.btn-nav.active {
+  background: var(--orange);
+  color: #fff;
+  animation: none;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: #fff;
+  border: none;
+}
+
+.btn-orange {
+  background: transparent;
+  color: var(--orange);
+  border: 1px solid var(--orange);
+}
+
+.btn-orange:hover,
+.btn-orange:active {
+  background: var(--orange);
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* --- Cards --- */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.card-cyan-border {
+  border-color: var(--cyan);
+}
+
+/* --- Input --- */
+.input-field {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(245, 247, 250, 0.25);
+  border-radius: 6px;
+  padding: 12px 12px 12px 40px;
+  color: var(--light);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus {
+  border-color: var(--cyan);
+}
+
+.input-field::placeholder {
+  color: rgba(245, 247, 250, 0.35);
+  font-style: italic;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  width: 18px;
+  height: 18px;
+  color: rgba(245, 247, 250, 0.4);
+  pointer-events: none;
+}
+
+/* --- Dividers --- */
+.divider {
+  border: none;
+  border-top: 1px solid rgba(245, 247, 250, 0.1);
+  margin: 16px 0;
+}
+
+/* --- Utility --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.w-full { width: 100%; }

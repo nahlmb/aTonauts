@@ -1,0 +1,28 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  scrollable?: boolean;
+}
+
+const { title = 'ATonauts Misi 1.0', scrollable = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1A1F26" />
+    <meta name="description" content="ATonauts Misi 1.0 — Investigasi Teknologi Penyimpanan Energi Hijau" />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <div class={scrollable ? 'book-frame book-frame--scroll' : 'book-frame'}>
+      <slot />
+    </div>
+  </body>
+</html>

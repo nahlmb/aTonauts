@@ -1,0 +1,411 @@
+---
+import { getCollection } from 'astro:content';
+import MissionLayout from '../../layouts/MissionLayout.astro';
+import ProtocolMisi from '../../components/static/ProtocolMisi.astro';
+import KapsulWaktu from '../../components/islands/KapsulWaktu.jsx';
+
+export async function getStaticPaths() {
+  const missions = await getCollection('missions');
+  return missions.map((entry) => ({
+    params: { slug: entry.id },
+    props: { mission: entry.data },
+  }));
+}
+
+const { mission } = Astro.props;
+
+// Map sheet names
+const sheetMap: Record<string, string> = {
+  'misi-01': 'Misi_01',
+  'misi-02': 'Misi_02',
+  'misi-03': 'Misi_03',
+};
+const sheetName = sheetMap[mission.slug] ?? mission.slug;
+
+// Parse simple markdown bold/italic in news text
+function parseMarkdown(text: string): string {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/_(.*?)_/g, '<em>$1</em>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br/>');
+}
+---
+
+<MissionLayout
+  title={`Misi ${mission.number} — ATonauts`}
+  progressDots={mission.progressDots}
+  totalDots={mission.totalDots}
+  prevHref={mission.navigation.prev}
+  nextHref={mission.navigation.next}
+>
+
+  <!-- Page Title Block -->
+  <div class="page-title-block">
+    <div class="pt-tag-col">
+      <span class="pt-tag-1">MISI</span>
+      <span class="pt-tag-2">{mission.number}</span>
+    </div>
+    <div class="pt-text-col">
+      <h1 class="pt-heading">{mission.title}</h1>
+      <p class="pt-subheading">{mission.subtitle}</p>
+    </div>
+  </div>
+
+  <!-- Protocol -->
+  <div class="section-pad">
+    <ProtocolMisi
+      status={mission.protocol.status}
+      outputLines={mission.protocol.outputLines}
+      panduan={mission.protocol.panduan}
+    />
+  </div>
+
+  <!-- Content: News Article (Misi 01) -->
+  {mission.content.type === 'news_article' && (
+    <div class="news-section section-pad">
+      {mission.content.newsImages?.map((img) => (
+        <img src={img} alt="Today's Nano header" class="news-header-img" />
+      ))}
+
+      <div class="news-body">
+        <div class="news-title-row">
+          <h2 class="news-title">TODAY'S NANO</h2>
+          <p class="news-tagline">Kabar Dunia dalam Genggaman Tanganmu Hari Ini</p>
+          <div class="news-tabs">
+            {['TOP', 'FOR YOU', 'SHOWBIZ', 'NEWS', 'LIFE', 'INTERMEZZO', 'SCI-TECH', 'ALL'].map((tab) => (
+              <span class={`news-tab${tab === 'SCI-TECH' ? ' active' : ''}`}>{tab}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="news-article-header">
+          <div class="news-article-meta">
+            <p class="news-article-title">
+              Ponsel Setipis Kartu Debit, Tetapi Baterainya Tahan Lebih Lama dari Niatmu Begadang! ...Bagaimana Mungkin?!
+            </p>
+            <p class="news-byline">
+              <span>&#128100; Sereh Bliezenski</span>
+              <span>&#128197; 01/01/2024</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="news-text" set:html={`<p>${parseMarkdown(mission.content.newsText ?? '')}</p>`} />
+
+        <!-- Highlight boxes -->
+        <div class="news-highlights">
+          <div class="highlight-box hl-left">
+            <p class="hl-title">HIGHLIGHT BATERAI MODERN</p>
+            <div class="hl-items">
+              <div class="hl-item">
+                <span class="hl-dot">&#x1F50B;</span>
+                <span>Daya yang tersimpan dapat digunakan hingga berjam-jam.</span>
+              </div>
+              <div class="hl-item">
+                <span class="hl-dot">&#x26A1;</span>
+                <span>Pengisian daya super cepat.</span>
+              </div>
+              <div class="hl-item">
+                <span class="hl-dot">&#x1F321;</span>
+                <span>Lebih stabil terhadap panas dan umur baterai panjang.</span>
+              </div>
+            </div>
+          </div>
+          <div class="highlight-box hl-right">
+            <p class="hl-title">TUNGGU DULU...</p>
+            <p class="hl-text">Biasanya, sesuatu yang dibuat lebih kecil atau lebih tipis justru memiliki kemampuan yang lebih rendah.</p>
+            <p class="hl-question">Jadi, mengapa baterai ponsel modern bisa mengalami hal yang berbeda?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Kapsul Waktu -->
+  <div class="kapsul-section section-pad">
+    <div class="kapsul-header">
+      <img src="/assets/icons/Capsule_Icon.svg" alt="" class="kapsul-icon" />
+      <h2 class="kapsul-title">KAPSUL WAKTU</h2>
+    </div>
+
+    {mission.content.type !== 'news_article' && (
+      <p class="kapsul-intro">
+        {mission.slug === 'misi-02'
+          ? 'Dua pertanyaan yang menurut saya penting untuk diselidiki dari berita Today\'s Nano adalah:'
+          : 'Dugaan saya terhadap fenomena tersebut adalah:'}
+      </p>
+    )}
+
+    <div class="kapsul-inputs">
+      {mission.kapsulWaktu.map((kw) => (
+        <KapsulWaktu
+          client:load
+          misiId={mission.slug.replace('-', '_')}
+          fieldId={kw.id}
+          label={kw.label}
+          hint={kw.hint}
+          charLimit={kw.charLimit}
+          sheetName={sheetName}
+        />
+      ))}
+    </div>
+  </div>
+
+</MissionLayout>
+
+<style>
+  .section-pad { padding: 0 16px; margin-bottom: 20px; }
+
+  /* Page title */
+  .page-title-block {
+    display: flex;
+    gap: 0;
+    margin: 0;
+    border-bottom: 1px solid rgba(245,247,250,0.1);
+    margin-bottom: 20px;
+  }
+
+  .pt-tag-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 14px;
+    border-right: 1px solid rgba(245,247,250,0.1);
+    flex-shrink: 0;
+    min-width: 64px;
+  }
+
+  .pt-tag-1 {
+    font-family: var(--font-tag);
+    font-size: 9px;
+    color: var(--light);
+    letter-spacing: 0.06em;
+  }
+
+  .pt-tag-2 {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    color: var(--light);
+    line-height: 1;
+  }
+
+  .pt-text-col {
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .pt-heading {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--light);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+
+  .pt-subheading {
+    font-style: italic;
+    font-size: 12px;
+    color: rgba(245,247,250,0.55);
+    line-height: 1.4;
+  }
+
+  /* News Article */
+  .news-section { display: flex; flex-direction: column; gap: 0; }
+
+  .news-header-img {
+    width: 100%;
+    display: block;
+    border-radius: 6px 6px 0 0;
+  }
+
+  .news-body {
+    border: 1px solid rgba(245,247,250,0.12);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    overflow: hidden;
+  }
+
+  .news-title-row {
+    padding: 12px 14px 0;
+  }
+
+  .news-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    color: var(--light);
+    letter-spacing: 0.04em;
+  }
+
+  .news-tagline {
+    font-family: var(--font-caption);
+    font-size: 10px;
+    font-style: italic;
+    color: rgba(245,247,250,0.45);
+    margin-top: 2px;
+  }
+
+  .news-tabs {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(245,247,250,0.1);
+  }
+  .news-tabs::-webkit-scrollbar { display: none; }
+
+  .news-tab {
+    font-family: var(--font-tag);
+    font-size: 9px;
+    color: rgba(245,247,250,0.4);
+    padding: 6px 10px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    cursor: default;
+  }
+
+  .news-tab.active {
+    color: var(--cyan);
+    border-bottom: 2px solid var(--cyan);
+  }
+
+  .news-article-header {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(245,247,250,0.08);
+  }
+
+  .news-article-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    color: var(--light);
+    line-height: 1.35;
+  }
+
+  .news-byline {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+    font-family: var(--font-caption);
+    font-size: 10px;
+    color: rgba(245,247,250,0.4);
+  }
+
+  .news-text {
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,247,250,0.8);
+    border-bottom: 1px solid rgba(245,247,250,0.08);
+  }
+
+  .news-text :global(em) { color: var(--cyan); font-style: italic; }
+  .news-text :global(strong) { color: var(--light); }
+  .news-text :global(p) { margin-bottom: 10px; }
+  .news-text :global(p:last-child) { margin-bottom: 0; }
+
+  /* Highlight boxes */
+  .news-highlights {
+    display: flex;
+    gap: 0;
+  }
+
+  .highlight-box {
+    flex: 1;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hl-left {
+    border-right: 1px solid rgba(245,247,250,0.08);
+    background: rgba(60,226,255,0.04);
+  }
+
+  .hl-right {
+    background: rgba(255,107,53,0.04);
+  }
+
+  .hl-title {
+    font-family: var(--font-tag);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    color: var(--cyan);
+    margin-bottom: 4px;
+  }
+
+  .hl-right .hl-title { color: var(--orange); }
+
+  .hl-items { display: flex; flex-direction: column; gap: 6px; }
+
+  .hl-item {
+    display: flex;
+    gap: 8px;
+    font-size: 11px;
+    color: rgba(245,247,250,0.75);
+    line-height: 1.4;
+  }
+
+  .hl-dot { flex-shrink: 0; }
+
+  .hl-text {
+    font-size: 11px;
+    color: rgba(245,247,250,0.7);
+    line-height: 1.5;
+  }
+
+  .hl-question {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    color: var(--orange);
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  /* Kapsul Waktu */
+  .kapsul-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .kapsul-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .kapsul-icon {
+    width: 32px;
+    height: 32px;
+    filter: invert(70%) sepia(50%) saturate(500%) hue-rotate(170deg);
+    animation: capsule-float 3s ease-in-out infinite;
+  }
+
+  .kapsul-title {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--light);
+    letter-spacing: 0.04em;
+  }
+
+  .kapsul-intro {
+    font-size: 13px;
+    color: rgba(245,247,250,0.65);
+    font-style: italic;
+    margin-top: -6px;
+  }
+
+  .kapsul-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+</style>

@@ -1,0 +1,146 @@
+---
+interface PanduanItem {
+  icon: string | null;
+  text: string;
+}
+interface OutputItem {
+  icon: string | null;
+  text: string;
+}
+interface Props {
+  status: string;
+  outputLines: OutputItem[];
+  panduan: PanduanItem[];
+}
+
+const { status, outputLines, panduan } = Astro.props;
+---
+
+<div class="protocol-box">
+  <div class="protocol-header">
+    <span class="protocol-title">Protokol Misi</span>
+    <span class="protocol-status">STATUS: {status.toUpperCase()}</span>
+  </div>
+
+  <table class="protocol-table">
+    <tbody>
+      <tr>
+        <td class="pt-key">OUTPUT MISI</td>
+        <td class="pt-val">
+          {outputLines.map((line) => (
+            <div class="pt-line">
+              {line.icon && (
+                <img src={`/assets/icons/${line.icon}`} alt="" class="pt-icon" />
+              )}
+              {!line.icon && <span class="pt-bullet">&gt;</span>}
+              <span set:html={line.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/_(.*?)_/g, '<em>$1</em>')} />
+            </div>
+          ))}
+        </td>
+      </tr>
+      <tr>
+        <td class="pt-key">PANDUAN OPERASIONAL</td>
+        <td class="pt-val">
+          {panduan.map((item) => (
+            <div class="pt-line">
+              {item.icon ? (
+                <img src={`/assets/icons/${item.icon}`} alt="" class="pt-icon" />
+              ) : (
+                <span class="pt-bullet">&gt;</span>
+              )}
+              <span set:html={item.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/_(.*?)_/g, '<em>$1</em>')} />
+            </div>
+          ))}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .protocol-box {
+    border: 1px solid rgba(245, 247, 250, 0.15);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .protocol-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    border-bottom: 1px solid rgba(245, 247, 250, 0.1);
+  }
+
+  .protocol-title {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--light);
+  }
+
+  .protocol-status {
+    font-family: var(--font-tag);
+    font-size: 9px;
+    color: rgba(245, 247, 250, 0.45);
+    letter-spacing: 0.06em;
+  }
+
+  .protocol-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .protocol-table tr {
+    border-bottom: 1px solid rgba(245, 247, 250, 0.08);
+  }
+
+  .protocol-table tr:last-child {
+    border-bottom: none;
+  }
+
+  .pt-key {
+    font-family: var(--font-tag);
+    font-size: 9px;
+    color: var(--light);
+    letter-spacing: 0.06em;
+    vertical-align: top;
+    padding: 10px 10px 10px 14px;
+    white-space: nowrap;
+    border-right: 1px solid rgba(245, 247, 250, 0.08);
+    width: 38%;
+  }
+
+  .pt-val {
+    padding: 10px 14px;
+    vertical-align: top;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pt-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: rgba(245, 247, 250, 0.8);
+    line-height: 1.5;
+  }
+
+  .pt-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    filter: invert(80%) sepia(20%) saturate(200%) hue-rotate(170deg);
+  }
+
+  .pt-bullet {
+    color: var(--cyan);
+    font-family: var(--font-tag);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+</style>

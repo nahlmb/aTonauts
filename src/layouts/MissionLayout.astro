@@ -1,0 +1,166 @@
+---
+import BookLayout from './BookLayout.astro';
+
+interface Props {
+  title: string;
+  pageHeader?: string;
+  pageSubheader?: string;
+  progressDots?: number;
+  totalDots?: number;
+  prevHref?: string;
+  nextHref?: string;
+}
+
+const {
+  title,
+  pageHeader = 'ATonauts Misi 1.0',
+  pageSubheader = 'Investigasi Teknologi Penyimpanan Energi Hijau',
+  progressDots = 1,
+  totalDots = 6,
+  prevHref = '/',
+  nextHref = '/',
+} = Astro.props;
+---
+
+<BookLayout title={title}>
+  <!-- Sticky Header -->
+  <header class="mission-header">
+    <div class="mh-left">
+      <p class="mh-title">{pageHeader}</p>
+      <p class="mh-sub">{pageSubheader}</p>
+    </div>
+    <div class="mh-right">
+      <p class="mh-progress-label">PROGRESS MISI</p>
+      <div class="mh-dots" role="progressbar" aria-valuenow={progressDots} aria-valuemax={totalDots}>
+        {Array.from({ length: totalDots }, (_, i) => (
+          <span class={`dot${i < progressDots ? ' dot-active' : ''}`} />
+        ))}
+      </div>
+    </div>
+  </header>
+
+  <!-- Scrollable content area -->
+  <main class="mission-content">
+    <slot />
+  </main>
+
+  <!-- Sticky Footer -->
+  <footer class="mission-footer">
+    <a href={prevHref} class="btn btn-nav mf-btn" id="btn-back">
+      <img src="/assets/icons/LeftArrow_Icons.svg" alt="" class="nav-icon" />
+      KEMBALI
+    </a>
+    <a href={nextHref} class="btn btn-nav mf-btn" id="btn-next">
+      LANJUTKAN MISI
+      <img src="/assets/icons/RightArrow_Icons.svg" alt="" class="nav-icon" />
+    </a>
+  </footer>
+</BookLayout>
+
+<style>
+  /* Sticky Header */
+  .mission-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg);
+    border-bottom: 1px solid rgba(245, 247, 250, 0.08);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: var(--header-h);
+  }
+
+  .mh-left { display: flex; flex-direction: column; gap: 2px; }
+
+  .mh-title {
+    font-family: var(--font-tag);
+    font-size: 10px;
+    color: var(--light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mh-sub {
+    font-family: var(--font-caption);
+    font-size: 10px;
+    font-style: italic;
+    color: var(--cyan);
+  }
+
+  .mh-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .mh-progress-label {
+    font-family: var(--font-tag);
+    font-size: 9px;
+    color: var(--cyan);
+    letter-spacing: 0.06em;
+  }
+
+  .mh-dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(245, 247, 250, 0.35);
+    background: transparent;
+    display: block;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .dot-active {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    box-shadow: 0 0 6px var(--cyan);
+  }
+
+  /* Scrollable content */
+  .mission-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 0 calc(var(--footer-h) + 16px);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Sticky Footer */
+  .mission-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+    background: var(--bg);
+    border-top: 1px solid rgba(245, 247, 250, 0.08);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--footer-h);
+  }
+
+  .mf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-icon {
+    width: 14px;
+    height: 14px;
+    filter: invert(60%) sepia(80%) saturate(600%) hue-rotate(355deg) brightness(110%);
+  }
+</style>

@@ -1,0 +1,42 @@
+{
+  "slug": "misi-03",
+  "number": "03",
+  "title": "DUGA DULU, UJI NANTI!",
+  "subtitle": "Buat dugaan dari dua pertanyaan utama penyelidikan",
+  "progressDots": 3,
+  "totalDots": 6,
+  "protocol": {
+    "status": "Observasi",
+    "outputLines": [
+      { "icon": null, "text": "Buat dugaan untuk dua pertanyaan penyelidikan utama:" },
+      { "icon": "01_ICON.svg", "text": "Apa yang berubah dari baterai ponsel modern sehingga membuat kapasitasnya lebih canggih?" },
+      { "icon": "02_ICON.svg", "text": "Mengapa ukuran baterai yang mengecil justru dapat meningkatkan performa ponsel?" }
+    ],
+    "panduan": [
+      { "icon": "Play_Icon.svg", "text": "Awali dengan kata: \"Menurutku...\"." },
+      { "icon": "Chain_Icon.svg", "text": "Tunjukkan hubungan sebab-akibat (contoh: \"karena\" atau \"sehingga\") atau hubungan pertentangan (contoh: \"justru\")." },
+      { "icon": "End_Icon.svg", "text": "Hubungkan dengan konsep kimia yang telah kamu pelajari (seperti: atom, reaksi redoks, atau sifat zat)." }
+    ]
+  },
+  "content": {
+    "type": "text_only"
+  },
+  "kapsulWaktu": [
+    {
+      "id": "dugaan_1",
+      "label": "DUGAAN 1",
+      "hint": "tulis dugaan PERTANYAAN 1 di sini...",
+      "charLimit": 300
+    },
+    {
+      "id": "dugaan_2",
+      "label": "DUGAAN 2",
+      "hint": "tulis dugaan PERTANYAAN 2 di sini...",
+      "charLimit": 300
+    }
+  ],
+  "navigation": {
+    "prev": "/misi/misi-02",
+    "next": "/selesai"
+  }
+}

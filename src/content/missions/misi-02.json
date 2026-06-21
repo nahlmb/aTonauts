@@ -1,0 +1,41 @@
+{
+  "slug": "misi-02",
+  "number": "02",
+  "title": "KEMUKAKAN PERTANYAANMU",
+  "subtitle": "Ubah informasi tidak biasa dari berita Today's Nano menjadi pertanyaan ilmiah yang layak untuk diselidiki",
+  "progressDots": 2,
+  "totalDots": 6,
+  "protocol": {
+    "status": "Observasi",
+    "outputLines": [
+      { "icon": null, "text": "Dua pertanyaan ilmiah tentang kejanggalan teknologi baterai dari berita Today's Nano." }
+    ],
+    "panduan": [
+      { "icon": "Different_Icon.svg", "text": "Buat dua pertanyaan yang berbeda." },
+      { "icon": "Question_Icon.svg", "text": "Gunakan kata tanya \"Apa\", \"Mengapa\", atau \"Bagaimana\"." },
+      { "icon": "Chain_Icon.svg", "text": "Tunjukkan hubungan sebab-akibat (contoh: \"karena\" atau \"sehingga\") atau hubungan pertentangan (contoh: \"justru\")." },
+      { "icon": "End_Icon.svg", "text": "Pastikan setiap pertanyaan diakhiri dengan tanda tanya (?)." }
+    ]
+  },
+  "content": {
+    "type": "text_only"
+  },
+  "kapsulWaktu": [
+    {
+      "id": "pertanyaan_1",
+      "label": "PERTANYAAN 1",
+      "hint": "tulis pertanyaan ilmiahmu di sini...",
+      "charLimit": 300
+    },
+    {
+      "id": "pertanyaan_2",
+      "label": "PERTANYAAN 2",
+      "hint": "tulis pertanyaan ilmiahmu di sini...",
+      "charLimit": 300
+    }
+  ],
+  "navigation": {
+    "prev": "/misi/misi-01",
+    "next": "/misi/misi-03"
+  }
+}

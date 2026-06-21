@@ -1,0 +1,340 @@
+---
+import BookLayout from '../layouts/BookLayout.astro';
+---
+
+<BookLayout title="Operasi Misi 1.0 — ATonauts" scrollable={true}>
+  <div class="operasi-page">
+
+    <header class="op-header">
+      <h1 class="op-title">OPERASI MISI 1.0</h1>
+      <p class="op-subtitle">MENGENAL KEPENTINGAN SEMUA PIHAK TERLIBAT DAN ALUR MISI 1.0</p>
+    </header>
+
+    <div class="op-columns">
+
+      <!-- LEFT: Alur Misi -->
+      <section class="col-left">
+        <h2 class="col-heading">ALUR MISI 1.0</h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-number">01</div>
+            <div class="tl-line"></div>
+            <div class="tl-label">TEMUKAN ANOMALI</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-number">02</div>
+            <div class="tl-line"></div>
+            <div class="tl-label">KEMUKAKAN PERTANYAAN</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-number">03</div>
+            <div class="tl-line"></div>
+            <div class="tl-label">RAMAL DULU, UJI NANTI!</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-number">04</div>
+            <div class="tl-line"></div>
+            <div class="tl-label">SELIDIKI DAN BUKTIKAN</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-number">05</div>
+            <div class="tl-line"></div>
+            <div class="tl-label">SAATNYA UJI DUGAAN!</div>
+          </div>
+          <div class="tl-item tl-last">
+            <div class="tl-number">06</div>
+            <div class="tl-label">TENTANG MASA DEPAN</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Stakeholders -->
+      <section class="col-right">
+        <h2 class="col-heading">SEMUA PIHAK YANG TERLIBAT</h2>
+        <div class="stakeholder-grid">
+
+          <div class="sk-card">
+            <p class="sk-name">TODAY'S NANO</p>
+            <p class="sk-role">Media Massa Digital</p>
+            <p class="sk-desc">Menyampaikan informasi anomali teknologi baterai ke publik.</p>
+            <p class="sk-interest"><strong>Kepentingan:</strong> Mengedepankan trafik (views) dan engagement, bukan akurasi ilmiah.</p>
+          </div>
+
+          <div class="sk-card">
+            <p class="sk-name">DEBRIZZ</p>
+            <p class="sk-role">Pelaku Industri</p>
+            <p class="sk-desc">Pelaku industri baterai konvensional yang mempertanyakan teknologi baru.</p>
+            <p class="sk-interest"><strong>Kepentingan:</strong> Menjaga dominasi pasarnya dari ancaman teknologi baru.</p>
+          </div>
+
+          <div class="sk-card">
+            <p class="sk-name">ATOLABS</p>
+            <p class="sk-role">Laboratorium</p>
+            <p class="sk-desc">Menjelaskan konsep sains secara netral tanpa opini.</p>
+            <p class="sk-interest"><strong>Kepentingan:</strong> Membuktikan sains tanpa memikirkan penerapannya dalam industri.</p>
+          </div>
+
+          <div class="sk-card">
+            <p class="sk-name">ROSETTA</p>
+            <p class="sk-role">Aggregator Data</p>
+            <p class="sk-desc">Mengumpulkan banyak informasi dari berbagai sumber.</p>
+            <p class="sk-interest"><strong>Kepentingan:</strong> Mengolah informasi yang tersedia tanpa membuang opini inkompeten dan klaim palsu.</p>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Catatan -->
+    <section class="op-note">
+      <p class="op-note-label">Catatan:</p>
+      <p>
+        Semua pihak yang terlibat (stakeholder) dalam misi 1.0 akan datang sewaktu-waktu dalam penyelidikanmu.
+        Tidak ada klaim yang paling benar, yang ada adalah perbedaan sudut pandang dari tiap pihak yang terlibat.
+      </p>
+      <p style="margin-top:8px"><em>Dan perbedaan itu adalah data, bukan eror.</em></p>
+    </section>
+
+    <!-- Peran Philaerners -->
+    <section class="op-peran">
+      <p class="op-peran-label">PERAN PHILAERNERS:</p>
+      <p>Kamu adalah Philaerners. Kamu tidak mencari jawaban benar.</p>
+      <p style="margin-top:6px">
+        Tugas Philaerners adalah membangun keputusan terbaik dalam menilai teknologi baterai, untuk menyimpan energi hijau,
+        di tengah konflik informasi oleh semua pihak yang terlibat dalam misi ini.
+      </p>
+      <p class="op-tagline"><em>Jangan Percaya. Selidiki. Dan Buktikan.</em></p>
+    </section>
+
+    <!-- Nav button -->
+    <div class="op-footer">
+      <a href="/misi/misi-01" class="btn btn-primary op-btn">
+        LANJUTKAN PENYELIDIKAN
+        <img src="/assets/icons/RightArrow_Icons.svg" alt="" class="btn-icon" />
+      </a>
+    </div>
+
+  </div>
+</BookLayout>
+
+<style>
+  .operasi-page {
+    padding: 24px 20px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Header */
+  .op-header { display: flex; flex-direction: column; gap: 4px; }
+  .op-title {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: var(--light);
+    letter-spacing: 0.04em;
+  }
+  .op-subtitle {
+    font-family: var(--font-tag);
+    font-size: 10px;
+    color: rgba(245, 247, 250, 0.5);
+    letter-spacing: 0.06em;
+  }
+
+  /* Two-column layout */
+  .op-columns {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  /* On mobile: stack vertically */
+  @media (max-width: 480px) {
+    .op-columns { flex-direction: column; }
+  }
+
+  .col-heading {
+    font-family: var(--font-tag);
+    font-size: 10px;
+    color: var(--light);
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid rgba(245, 247, 250, 0.15);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+
+  /* Left: Timeline */
+  .col-left { flex: 0 0 120px; }
+
+  .timeline { display: flex; flex-direction: column; }
+
+  .tl-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  .tl-number {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: var(--cyan);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 28px;
+    padding-top: 2px;
+  }
+
+  .tl-label {
+    font-family: var(--font-tag);
+    font-size: 9px;
+    color: var(--light);
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    padding-top: 4px;
+  }
+
+  /* Dashed connector line between steps */
+  .tl-line {
+    position: absolute;
+    left: 13px;
+    top: 22px;
+    bottom: -10px;
+    width: 1px;
+    border-left: 1px dashed rgba(60, 226, 255, 0.35);
+  }
+
+  /* Right: Stakeholder grid */
+  .col-right { flex: 1; }
+
+  .stakeholder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .sk-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,247,250,0.12);
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sk-name {
+    font-family: var(--font-tag);
+    font-size: 9px;
+    color: var(--cyan);
+    letter-spacing: 0.08em;
+  }
+
+  .sk-role {
+    font-family: var(--font-caption);
+    font-size: 10px;
+    font-style: italic;
+    color: rgba(245, 247, 250, 0.55);
+  }
+
+  .sk-desc {
+    font-size: 11px;
+    color: rgba(245,247,250,0.75);
+    line-height: 1.4;
+  }
+
+  .sk-interest {
+    font-size: 10px;
+    color: rgba(245,247,250,0.6);
+    line-height: 1.4;
+    margin-top: 4px;
+    border-top: 1px solid rgba(245,247,250,0.08);
+    padding-top: 6px;
+  }
+
+  .sk-interest strong {
+    color: var(--cyan);
+    font-weight: 400;
+    font-family: var(--font-tag);
+    font-size: 9px;
+    letter-spacing: 0.04em;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* Catatan */
+  .op-note {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,247,250,0.12);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 6px 6px 0;
+    padding: 14px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245,247,250,0.8);
+  }
+
+  .op-note-label {
+    font-family: var(--font-tag);
+    font-size: 10px;
+    color: var(--orange);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  /* Peran */
+  .op-peran {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,247,250,0.12);
+    border-radius: 6px;
+    padding: 14px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245,247,250,0.8);
+  }
+
+  .op-peran-label {
+    font-family: var(--font-tag);
+    font-size: 10px;
+    color: var(--cyan);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  .op-tagline {
+    margin-top: 10px;
+    color: var(--light);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* Footer */
+  .op-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
+
+  .op-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--teal);
+    color: #fff;
+    border-radius: 8px;
+    font-family: var(--font-tag);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .op-btn:hover { opacity: 0.85; }
+
+  .btn-icon {
+    width: 14px;
+    height: 14px;
+    filter: invert(1);
+  }
+</style>
