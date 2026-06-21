@@ -2,52 +2,157 @@
 import BookLayout from '../layouts/BookLayout.astro';
 
 const misiSteps = [
-  { num: '01', label: 'TEMUKAN\nANOMALI',       icon: '01_ICON.svg' },
-  { num: '02', label: 'KEMUKAKAN\nPERTANYAAN',  icon: 'Question_Icon.svg' },
-  { num: '03', label: 'DUGA DULU,\nUJI NANTI!', icon: 'Play_Icon.svg' },
-  { num: '04', label: 'SELIDIKI DAN\nBUKTIKAN', icon: 'Chain_Icon.svg' },
-  { num: '05', label: 'SAATNYA\nUJI DUGAAN',    icon: 'Different_Icon.svg' },
-  { num: '06', label: 'TENTANG\nMASA DEPAN',    icon: 'End_Icon.svg' },
+  {
+    num: '01',
+    labelHtml: 'TEMUKAN<br/>ANOMALI',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`
+  },
+  {
+    num: '02',
+    labelHtml: 'KEMUKAKAN<br/>PERTANYAAN',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`
+  },
+  {
+    num: '03',
+    labelHtml: 'DUGA DULU,<br/>UJI NANTI!',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .5 2.5 1.5 3.5.7.8 1.3 1.5 1.5 2.5"></path><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line></svg>`
+  },
+  {
+    num: '04',
+    labelHtml: 'SELIDIKI DAN<br/>BUKTIKAN',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>`
+  },
+  {
+    num: '05',
+    labelHtml: 'SAATNYA<br/>UJI DUGAAN',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`
+  },
+  {
+    num: '06',
+    labelHtml: 'TENTANG<br/>MASA DEPAN',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
+  }
 ];
 
-// Lucide SVG inner paths for each stakeholder
 const stakeholders = [
   {
     name: "TODAY'S NANO",
     role: 'Media Massa Digital',
     desc: 'Menyampaikan informasi anomali teknologi baterai ke publik.',
     kepentingan: 'Mengedepankan trafik (views) dan engagement, bukan akurasi ilmiah.',
-    iconBg: 'rgba(60,226,255,0.08)',
-    iconStroke: '#3CE2FF',
-    iconPath: '<path d="M4 3h16a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a1 1 0 0 1 1-1z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M8 15h5"/>',
+    illustrationSvg: `
+      <svg viewBox="0 0 80 80" class="sk-illustration">
+        <!-- Newspaper body -->
+        <rect x="18" y="10" width="44" height="56" rx="2" fill="#12151a" stroke="#ffffff" stroke-width="1.5"/>
+        <!-- Newspaper header block -->
+        <rect x="23" y="16" width="34" height="6" fill="none" stroke="#3CE2FF" stroke-width="1"/>
+        <!-- Text "NANO TODAY" placeholder lines -->
+        <line x1="26" y1="19" x2="34" y2="19" stroke="#3CE2FF" stroke-width="1"/>
+        <line x1="38" y1="19" x2="52" y2="19" stroke="#3CE2FF" stroke-width="1"/>
+        <!-- Lines representing text -->
+        <line x1="23" y1="28" x2="57" y2="28" stroke="#ffffff" stroke-width="1" stroke-dasharray="2 1"/>
+        <line x1="23" y1="33" x2="57" y2="33" stroke="#ffffff" stroke-width="1" stroke-dasharray="4 1"/>
+        <line x1="23" y1="38" x2="57" y2="38" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 1"/>
+        <!-- Grid/Image placeholder -->
+        <rect x="23" y="44" width="18" height="14" fill="none" stroke="#ffffff" stroke-width="1"/>
+        <!-- Dot details inside image -->
+        <circle cx="28" cy="49" r="2" fill="#3CE2FF"/>
+        <line x1="32" y1="51" x2="38" y2="51" stroke="#ffffff" stroke-width="1"/>
+        <!-- More lines -->
+        <line x1="45" y1="47" x2="57" y2="47" stroke="#ffffff" stroke-width="1" stroke-dasharray="2 1"/>
+        <line x1="45" y1="52" x2="57" y2="52" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 1"/>
+        <!-- Magnifying glass overlapping -->
+        <circle cx="58" cy="58" r="8" fill="#000000" stroke="#3CE2FF" stroke-width="1.5"/>
+        <line x1="64" y1="64" x2="72" y2="72" stroke="#3CE2FF" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    `
   },
   {
     name: 'DEBRIZZ',
     role: 'Pelaku Industri',
     desc: 'Pelaku industri baterai konvensional yang mempertanyakan teknologi baru.',
     kepentingan: 'Menjaga dominasi pasarnya dari ancaman teknologi baru.',
-    iconBg: 'rgba(255,107,53,0.08)',
-    iconStroke: '#FF6B35',
-    iconPath: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>',
+    illustrationSvg: `
+      <svg viewBox="0 0 80 80" class="sk-illustration">
+        <!-- Background circle -->
+        <circle cx="40" cy="40" r="30" fill="#0f172a" stroke="#FF6B35" stroke-width="1.5"/>
+        <g clip-path="url(#debrizz-avatar-clip)">
+          <!-- Suit/shoulders -->
+          <path d="M18 64 C20 48, 25 45, 40 45 C55 45, 60 48, 62 64 Z" fill="#1b2535" stroke="#ffffff" stroke-width="1"/>
+          <!-- White Shirt Collar -->
+          <polygon points="34 45, 46 45, 40 54" fill="#ffffff"/>
+          <!-- Red Tie -->
+          <polygon points="38 52, 42 52, 43 65, 40 68, 37 65" fill="#FF6B35"/>
+          <!-- Neck -->
+          <rect x="36" y="38" width="8" height="8" fill="#ffdbb5"/>
+          <!-- Head/Face -->
+          <circle cx="40" cy="28" r="12" fill="#ffdbb5"/>
+          <!-- Hair -->
+          <path d="M28 26 C28 16, 52 16, 52 26 C52 22, 48 20, 40 20 C32 20, 28 22, 28 26 Z" fill="#111111"/>
+        </g>
+        <!-- Clip path for circle background -->
+        <defs>
+          <clipPath id="debrizz-avatar-clip">
+            <circle cx="40" cy="40" r="29.5"/>
+          </clipPath>
+        </defs>
+      </svg>
+    `
   },
   {
     name: 'ATOLABS',
     role: 'Laboratorium',
     desc: 'Menjelaskan konsep sains secara netral tanpa opini.',
     kepentingan: 'Membuktikan sains tanpa memikirkan penerapannya dalam industri.',
-    iconBg: 'rgba(13,148,136,0.1)',
-    iconStroke: '#0D9488',
-    iconPath: '<path d="M10 2v7.31a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.317V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/>',
+    illustrationSvg: `
+      <svg viewBox="0 0 80 80" class="sk-illustration">
+        <!-- Magnetic stirrer platform -->
+        <rect x="18" y="50" width="44" height="18" rx="2" fill="#1b2535" stroke="#0D9488" stroke-width="1.5"/>
+        <!-- Knobs -->
+        <circle cx="30" cy="59" r="3" fill="#0D9488"/>
+        <circle cx="50" cy="59" r="3" fill="#0D9488"/>
+        <!-- Flask body -->
+        <path d="M35 15 L35 28 L22 45 L58 45 L45 28 L45 15 Z" fill="#12151a" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+        <!-- Lip of the flask -->
+        <rect x="33" y="12" width="14" height="3" rx="1" fill="#ffffff"/>
+        <!-- Liquid level -->
+        <path d="M25 41 L55 41 L52 45 L28 45 Z" fill="#0D9488" opacity="0.8"/>
+      </svg>
+    `
   },
   {
     name: 'ROSETTA',
     role: 'Aggregator Data',
     desc: 'Mengumpulkan banyak informasi dari berbagai sumber.',
     kepentingan: 'Mengolah informasi yang tersedia tanpa membuang opini inkompeten dan klaim palsu.',
-    iconBg: 'rgba(139,92,246,0.08)',
-    iconStroke: '#8B5CF6',
-    iconPath: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>',
-  },
+    illustrationSvg: `
+      <svg viewBox="0 0 80 80" class="sk-illustration">
+        <!-- Robot Head -->
+        <rect x="22" y="16" width="36" height="24" rx="6" fill="#1b2535" stroke="#ffffff" stroke-width="1.5"/>
+        <!-- Screen area -->
+        <rect x="26" y="20" width="28" height="16" rx="3" fill="#000000"/>
+        <!-- Glowing blue eyes -->
+        <circle cx="34" cy="28" r="3" fill="#3CE2FF" filter="drop-shadow(0 0 3px #3CE2FF)"/>
+        <circle cx="46" cy="28" r="3" fill="#3CE2FF" filter="drop-shadow(0 0 3px #3CE2FF)"/>
+        <!-- Ears/Antennae -->
+        <rect x="18" y="24" width="4" height="8" rx="1" fill="#ffffff"/>
+        <rect x="58" y="24" width="4" height="8" rx="1" fill="#ffffff"/>
+        <circle cx="40" cy="11" r="2" fill="#3CE2FF"/>
+        <line x1="40" y1="13" x2="40" y2="16" stroke="#ffffff" stroke-width="1"/>
+        <!-- Robot Body -->
+        <rect x="28" y="44" width="24" height="20" rx="4" fill="#1b2535" stroke="#ffffff" stroke-width="1.5"/>
+        <!-- Neck joint -->
+        <rect x="37" y="40" width="6" height="4" fill="#cccccc"/>
+        <!-- Chest details (glowing core) -->
+        <circle cx="40" cy="54" r="4" fill="#3CE2FF" opacity="0.9"/>
+        <!-- Floating/hover details -->
+        <path d="M34 64 L46 64 L40 70 Z" fill="#ffffff"/>
+        <!-- Arms -->
+        <path d="M20 48 Q14 54 22 60" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        <path d="M60 48 Q66 54 58 60" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    `
+  }
 ];
 ---
 
@@ -60,83 +165,65 @@ const stakeholders = [
       <p class="op-sub">MENGENAL KEPENTINGAN SEMUA PIHAK TERLIBAT DAN ALUR MISI 1.0</p>
     </header>
 
-    <!-- Main bordered grid -->
-    <div class="main-grid">
-
-      <!-- Heading row: both columns at same height -->
-      <div class="grid-head-row">
-        <div class="gh-left">ALUR MISI 1.0</div>
-        <div class="gh-right">SEMUA PIHAK YANG TERLIBAT DALAM MISI 1.0</div>
+    <!-- Main Grid Container -->
+    <div class="columns-container">
+      <!-- LEFT COLUMN -->
+      <div class="left-column">
+        <div class="column-header-box">ALUR MISI 1.0</div>
+        <div class="badges-stack">
+          {misiSteps.map((step) => (
+            <div class="step-badge-outer">
+              <div class="step-badge-inner">
+                <div class="icon-circle">
+                  <Fragment set:html={step.iconSvg} />
+                </div>
+                <div class="step-text-stack">
+                  <div class="step-num-large">{step.num}</div>
+                  <div class="step-label-cyan"><Fragment set:html={step.labelHtml} /></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <!-- Content row -->
-      <div class="grid-content-row">
-
-        <!-- LEFT: Alur Misi -->
-        <div class="col-alur">
-          <div class="alur-list">
-            {misiSteps.map((step, i) => (
-              <div class="step-wrap">
-                <div class="step-row">
-                  <div class="hex-outer">
-                    <div class="hex-inner">
-                      <img src={`/assets/icons/${step.icon}`} alt="" class="hex-icon" />
-                    </div>
-                  </div>
-                  <div class="step-text">
-                    <span class="step-num">{step.num}</span>
-                    <span class="step-label">{step.label}</span>
-                  </div>
-                </div>
-                {i < misiSteps.length - 1 && <div class="step-conn" />}
+      <!-- RIGHT COLUMN -->
+      <div class="right-column">
+        <div class="column-header-box">SEMUA PIHAK YANG TERLIBAT DALAM MISI 1.0</div>
+        <div class="stakeholders-grid">
+          {stakeholders.map((sk) => (
+            <div class="stakeholder-card">
+              <div class="sk-top-group">
+                <div class="sk-name">{sk.name}</div>
+                <div class="sk-role">{sk.role}</div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- RIGHT: Stakeholders -->
-        <div class="col-pihak">
-          <div class="pihak-grid">
-            {stakeholders.map((sk, i) => (
-              <div class={`sk-col${i < stakeholders.length - 1 ? ' sk-border-r' : ''}`}>
-                <p class="sk-name">{sk.name}</p>
-                <p class="sk-role">{sk.role}</p>
-                <div class="sk-icon-wrap" style={`background:${sk.iconBg};border-color:${sk.iconStroke}40`}>
-                  <svg
-                    width="30" height="30"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke={sk.iconStroke}
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    set:html={sk.iconPath}
-                  />
-                </div>
-                <p class="sk-desc">{sk.desc}</p>
-                <p class="sk-kep-label">KEPENTINGAN:</p>
+              <div class="sk-illustration-container">
+                <Fragment set:html={sk.illustrationSvg} />
+              </div>
+              <p class="sk-desc">{sk.desc}</p>
+              <div class="sk-bottom-group">
+                <div class="sk-kep-label">KEPENTINGAN:</div>
                 <p class="sk-kep">{sk.kepentingan}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-
       </div>
     </div>
 
     <!-- Catatan -->
     <div class="catatan">
-      <p class="catatan-label">CATATAN:</p>
+      <div class="catatan-label">CATATAN:</div>
       <p>Semua pihak yang terlibat (stakeholder) dalam misi 1.0 akan hadir dalam misi penyelidikanmu. Tidak ada klaim yang paling benar, yang ada adalah perbedaan sudut pandang dari tiap pihak yang terlibat.</p>
       <p>Dan perbedaan itu adalah data, bukan eror.</p>
     </div>
 
     <!-- Peran -->
     <div class="peran">
-      <p class="peran-label">PERAN PHILAERNERS:</p>
+      <div class="peran-label">PERAN PHILAERNERS:</div>
       <p>Kamu adalah Philaerners. Kamu tidak mencari jawaban benar.</p>
       <p>Tugas Philaerners adalah membangun keputusan terbaik dalam menilai teknologi baterai, untuk menyimpan energi hijau, di tengah konflik informasi oleh semua pihak yang terlibat dalam misi ini.</p>
-      <p class="peran-tagline">Jangan Percaya. Selidiki. Dan Buktikan.</p>
+      <div class="peran-tagline">Jangan Percaya. Selidiki. Dan Buktikan.</div>
     </div>
 
     <!-- Nav button -->
@@ -161,259 +248,274 @@ const stakeholders = [
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 14px 0 24px;
+    gap: 16px;
+    padding: 24px 0 32px;
+    background: #000000;
   }
   .operasi-page::-webkit-scrollbar { display: none; }
 
   /* ── Header ── */
-  .op-header { padding: 0 14px; flex-shrink: 0; }
-
+  .op-header {
+    padding: 0 14px;
+    flex-shrink: 0;
+    margin-bottom: 4px;
+  }
   .op-title {
     font-family: var(--font-heading);
-    font-size: 26px;
+    font-size: 32px;
     color: var(--light);
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     line-height: 1.1;
+    font-weight: 700;
   }
   .op-sub {
-    font-family: var(--font-tag);
-    font-size: 7px;
-    color: rgba(245,247,250,0.38);
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: rgba(245, 247, 250, 0.45);
     letter-spacing: 0.05em;
-    margin-top: 3px;
+    margin-top: 4px;
     line-height: 1.4;
     font-style: italic;
+    text-transform: uppercase;
   }
 
-  /* ── Main grid container ── */
-  .main-grid {
-    flex-shrink: 0;
-    border: 1px solid rgba(245,247,250,0.25);
+  /* ── Columns Container ── */
+  .columns-container {
+    display: flex;
+    gap: 12px;
     margin: 0 14px;
+    align-items: stretch;
+    flex-shrink: 0;
+  }
+  .left-column {
+    width: 105px;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
+    gap: 8px;
+  }
+  .right-column {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
-  /* Heading row */
-  .grid-head-row {
-    display: flex;
-    border-bottom: 1px solid rgba(245,247,250,0.2);
-    flex-shrink: 0;
-  }
-  .gh-left {
-    width: 92px;
-    flex-shrink: 0;
+  /* ── Column Headers ── */
+  .column-header-box {
+    border: 1px solid rgba(245, 247, 250, 0.35);
+    padding: 6px;
+    text-align: center;
     font-family: var(--font-tag);
-    font-size: 7px;
+    font-size: 8px;
+    font-weight: 700;
     color: var(--light);
-    letter-spacing: 0.07em;
-    padding: 6px 6px 6px 8px;
-    border-right: 1px solid rgba(245,247,250,0.2);
+    letter-spacing: 0.05em;
+    height: 36px;
     display: flex;
     align-items: center;
-  }
-  .gh-right {
-    flex: 1;
-    font-family: var(--font-tag);
-    font-size: 7px;
-    color: var(--light);
-    letter-spacing: 0.06em;
-    padding: 6px 8px;
-    display: flex;
-    align-items: center;
-    line-height: 1.35;
-  }
-
-  /* Content row */
-  .grid-content-row {
-    display: flex;
-    flex: 1;
+    justify-content: center;
+    text-transform: uppercase;
+    line-height: 1.2;
   }
 
   /* ── LEFT: Alur Misi ── */
-  .col-alur {
-    width: 92px;
-    flex-shrink: 0;
-    border-right: 1px solid rgba(245,247,250,0.2);
-  }
-  .alur-list {
-    padding: 10px 5px 10px 7px;
+  .badges-stack {
     display: flex;
     flex-direction: column;
+    gap: 8px;
+    flex: 1;
   }
-  .step-wrap { display: flex; flex-direction: column; }
-  .step-row {
+  .step-badge-outer {
+    width: 100%;
+    height: 58px;
+    background: rgba(245, 247, 250, 0.35);
+    clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0% 50%);
+    padding: 1.5px;
     display: flex;
-    align-items: flex-start;
-    gap: 4px;
   }
-  .step-conn {
-    width: 1px;
-    height: 9px;
-    border-left: 1px dashed rgba(245,247,250,0.22);
-    margin-left: 20px;
+  .step-badge-inner {
+    flex: 1;
+    background: #000000;
+    clip-path: polygon(11.5px 0%, calc(100% - 11.5px) 0%, 100% 50%, calc(100% - 11.5px) 100%, 11.5px 100%, 0% 50%);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    gap: 8px;
   }
-
-  /* Octagon hex icon */
-  .hex-outer {
-    width: 42px;
-    height: 42px;
-    clip-path: polygon(30% 0%,70% 0%,100% 30%,100% 70%,70% 100%,30% 100%,0% 70%,0% 30%);
-    background: rgba(245,247,250,0.65);
-    display: grid;
-    place-items: center;
+  .icon-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.2px solid rgba(245, 247, 250, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
     flex-shrink: 0;
   }
-  .hex-inner {
-    width: 36px;
-    height: 36px;
-    clip-path: polygon(30% 0%,70% 0%,100% 30%,100% 70%,70% 100%,30% 100%,0% 70%,0% 30%);
-    background: #000;
-    display: grid;
-    place-items: center;
+  .icon-circle svg {
+    width: 15px;
+    height: 15px;
+    stroke-width: 2.2px;
   }
-  .hex-icon {
-    width: 20px;
-    height: 20px;
-    filter: invert(1);
-  }
-  .step-text {
+  .step-text-stack {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 3px;
+    line-height: 1.15;
     min-width: 0;
   }
-  .step-num {
+  .step-num-large {
     font-family: var(--font-heading);
-    font-size: 15px;
-    color: var(--light);
+    font-size: 16px;
     font-weight: 700;
+    color: var(--light);
     line-height: 1;
   }
-  .step-label {
+  .step-label-cyan {
     font-family: var(--font-tag);
-    font-size: 6px;
-    color: var(--light);
-    letter-spacing: 0.03em;
-    line-height: 1.3;
-    white-space: pre-line;
-    margin-top: 1px;
+    font-size: 7px;
+    color: var(--cyan);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin-top: 2px;
+    text-transform: uppercase;
   }
 
   /* ── RIGHT: Stakeholders ── */
-  .col-pihak { flex: 1; min-width: 0; }
-  .pihak-grid {
+  .stakeholders-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    height: 100%;
+    gap: 6px;
+    flex: 1;
   }
-  .sk-col {
-    padding: 8px 5px;
+  .stakeholder-card {
+    border: 1px solid rgba(245, 247, 250, 0.25);
+    padding: 10px 4px 12px;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    align-items: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.02);
     min-width: 0;
+    height: 100%;
   }
-  .sk-border-r { border-right: 1px solid rgba(245,247,250,0.15); }
-
+  .sk-top-group {
+    margin-bottom: 6px;
+  }
   .sk-name {
     font-family: var(--font-tag);
-    font-size: 6.5px;
+    font-size: 8.5px;
     color: var(--cyan);
-    letter-spacing: 0.04em;
-    line-height: 1.3;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1px;
+    letter-spacing: 0.02em;
   }
   .sk-role {
-    font-family: var(--font-caption);
-    font-size: 7px;
+    font-family: var(--font-body);
+    font-size: 7.5px;
     font-style: italic;
-    color: rgba(245,247,250,0.42);
-    line-height: 1.3;
+    color: rgba(245, 247, 250, 0.45);
+    line-height: 1.2;
   }
-
-  /* Lucide icon box replacing image placeholder */
-  .sk-icon-wrap {
+  .sk-illustration-container {
     width: 100%;
-    height: 60px;
-    display: grid;
-    place-items: center;
-    border-radius: 3px;
-    border: 1px solid;
-    flex-shrink: 0;
-    margin: 3px 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
   }
-
+  .sk-illustration {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+  }
   .sk-desc {
-    font-size: 7px;
-    color: rgba(245,247,250,0.7);
-    line-height: 1.45;
+    font-family: var(--font-body);
+    font-size: 8px;
+    color: rgba(245, 247, 250, 0.85);
+    line-height: 1.4;
+    margin-bottom: 12px;
+    flex-grow: 1;
+  }
+  .sk-bottom-group {
+    margin-top: auto;
   }
   .sk-kep-label {
     font-family: var(--font-tag);
-    font-size: 6px;
+    font-size: 7.5px;
     color: var(--cyan);
-    letter-spacing: 0.04em;
-    margin-top: 2px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
   }
   .sk-kep {
-    font-size: 7px;
-    color: rgba(245,247,250,0.58);
-    line-height: 1.45;
+    font-family: var(--font-body);
+    font-size: 8px;
+    color: rgba(245, 247, 250, 0.7);
+    line-height: 1.4;
   }
 
   /* ── Catatan ── */
   .catatan {
-    flex-shrink: 0;
-    border: 1px solid rgba(245,247,250,0.22);
-    padding: 10px 12px;
+    border: 1px solid rgba(245, 247, 250, 0.25);
+    padding: 16px 18px;
+    margin: 12px 14px 0;
     display: flex;
     flex-direction: column;
     gap: 6px;
-    margin: 0 14px;
+    background: rgba(255, 255, 255, 0.01);
   }
   .catatan-label {
     font-family: var(--font-tag);
-    font-size: 8px;
+    font-size: 11px;
     color: var(--cyan);
-    letter-spacing: 0.07em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
   }
   .catatan p:not(.catatan-label) {
-    font-size: 9.5px;
-    color: rgba(245,247,250,0.78);
-    line-height: 1.55;
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(245, 247, 250, 0.8);
+    line-height: 1.5;
   }
 
   /* ── Peran ── */
   .peran {
-    flex-shrink: 0;
-    background: rgba(245,247,250,0.04);
-    border: 1px solid rgba(245,247,250,0.18);
-    padding: 10px 12px;
+    border: 1px solid rgba(245, 247, 250, 0.25);
+    padding: 16px 18px;
+    margin: 12px 14px 0;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    margin: 0 14px;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.01);
   }
   .peran-label {
     font-family: var(--font-tag);
-    font-size: 8px;
+    font-size: 11px;
     color: var(--cyan);
-    letter-spacing: 0.07em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
   }
   .peran p:not(.peran-label):not(.peran-tagline) {
-    font-size: 9.5px;
-    color: rgba(245,247,250,0.78);
-    line-height: 1.55;
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(245, 247, 250, 0.8);
+    line-height: 1.5;
   }
   .peran-tagline {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
+    font-size: 12px;
     font-style: italic;
-    font-size: 13px;
     color: var(--light);
     text-align: center;
-    margin-top: 4px;
+    margin-top: 8px;
+    letter-spacing: 0.02em;
   }
 
   /* ── Footer ── */
