@@ -1,5 +1,6 @@
 ---
 import BookLayout from '../layouts/BookLayout.astro';
+import SubmitFinalResponses from '../components/islands/SubmitFinalResponses.jsx';
 ---
 
 <BookLayout title="Misi Selesai — ATonauts">
@@ -16,8 +17,10 @@ import BookLayout from '../layouts/BookLayout.astro';
 
       <p class="done-body">
         Kamu telah menyelesaikan tiga langkah pertama penyelidikanmu sebagai Philaerners.
-        Temuanmu, pertanyaanmu, dan dugaanmu telah tersimpan.
+        Temuanmu, pertanyaanmu, dan dugaanmu sedang direkap.
       </p>
+
+      <SubmitFinalResponses client:load />
 
       <p class="done-tagline">
         <em>Jangan Percaya. Selidiki. Dan Buktikan.</em>
@@ -76,6 +79,20 @@ import BookLayout from '../layouts/BookLayout.astro';
   .done-tagline {
     font-size: 14px;
     color: var(--light);
+  }
+
+  :global(.submit-status) {
+    font-family: var(--font-tag);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--cyan);
+    text-transform: uppercase;
+  }
+
+  :global(.submit-status-failed) {
+    color: var(--orange);
+    max-width: 320px;
+    line-height: 1.5;
   }
 
   .done-btn {

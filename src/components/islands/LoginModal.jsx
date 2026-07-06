@@ -1,15 +1,18 @@
-import { useState } from 'react';
-import { useStore } from '@nanostores/react';
-import { identity } from '../../stores/user.js';
-import { postToSheets } from '../../utils/sheets.js';
-import { SHEET_IDENTITY } from '../../config.js';
+import { useEffect, useState } from 'react';
+import { createSessionId, identity, sessionId } from '../../stores/user.js';
 
 export default function LoginModal({ onClose }) {
-  const $identity = useStore(identity);
-  const [nama, setNama] = useState($identity.nama || '');
-  const [kelas, setKelas] = useState($identity.kelas || '');
-  const [absen, setAbsen] = useState($identity.absen || '');
+  const [nama, setNama] = useState('');
+  const [kelas, setKelas] = useState('');
+  const [absen, setAbsen] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const storedIdentity = identity.get();
+    setNama(storedIdentity.nama || '');
+    setKelas(storedIdentity.kelas || '');
+    setAbsen(storedIdentity.absen || '');
+  }, []);
 
   const isValid = nama.trim() && kelas.trim() && absen.trim();
 
@@ -21,7 +24,7 @@ export default function LoginModal({ onClose }) {
     const data = { nama: nama.trim(), kelas: kelas.trim(), absen: absen.trim() };
 
     identity.set(data);
-    await postToSheets(SHEET_IDENTITY, { ...data, timestamp: new Date().toISOString() });
+    sessionId.set(createSessionId());
 
     window.location.href = '/operasi';
   }

@@ -14,14 +14,6 @@ export async function getStaticPaths() {
 
 const { mission } = Astro.props;
 
-// Map sheet names
-const sheetMap: Record<string, string> = {
-  'misi-01': 'Misi_01',
-  'misi-02': 'Misi_02',
-  'misi-03': 'Misi_03',
-};
-const sheetName = sheetMap[mission.slug] ?? mission.slug;
-
 // Parse simple markdown bold/italic in news text
 function parseMarkdown(text: string): string {
   return text
@@ -159,7 +151,6 @@ function parseMarkdown(text: string): string {
           label={kw.label}
           hint={kw.hint}
           charLimit={kw.charLimit}
-          sheetName={sheetName}
         />
       ))}
     </div>

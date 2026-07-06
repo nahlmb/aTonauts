@@ -1,8 +1,5 @@
-// Google Apps Script Web App URL — isi setelah client deploy script-nya
-export const APPS_SCRIPT_URL = '';
+// Google Apps Script Web App URL
+export const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw2M9Kc43vvJn3tdfnoU7TQbLLBIMrFYBT5T9ELQ1wl9KKrPFX2c_zNsD9upyPUt9O6wQ/exec';
 
-// Nama Google Sheet yang akan menerima data
-export const SHEET_IDENTITY = 'Identitas';
-export const SHEET_MISI_01  = 'Misi_01';
-export const SHEET_MISI_02  = 'Misi_02';
-export const SHEET_MISI_03  = 'Misi_03';
+// Nama tab Google Sheet untuk rekap akhir
+export const SHEET_RESPONSES = 'Jawaban';
