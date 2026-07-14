@@ -31,6 +31,7 @@ function parseMarkdown(text: string): string {
   totalDots={mission.totalDots}
   prevHref={mission.navigation.prev}
   nextHref={mission.navigation.next}
+  requiredKeys={mission.kapsulWaktu.map((kw) => `${mission.slug.replace('-', '_')}_${kw.id}`)}
 >
 
   <!-- Page Title Block -->
@@ -58,12 +59,12 @@ function parseMarkdown(text: string): string {
   {mission.content.type === 'news_article' && (
     <div class="news-section section-pad">
       {mission.content.newsImages?.map((img) => (
-        <img src={img} alt="Today's Nano header" class="news-header-img" />
+        <img src={img} alt="Header Nano Today" class="news-header-img" />
       ))}
 
       <div class="news-body">
         <div class="news-title-row">
-          <h2 class="news-title">TODAY'S NANO</h2>
+          <h2 class="news-title">NANO TODAY</h2>
           <p class="news-tagline">Kabar Dunia dalam Genggaman Tanganmu Hari Ini</p>
           <div class="news-tabs">
             {['TOP', 'FOR YOU', 'SHOWBIZ', 'NEWS', 'LIFE', 'INTERMEZZO', 'SCI-TECH', 'ALL'].map((tab) => (
@@ -137,7 +138,7 @@ function parseMarkdown(text: string): string {
     {mission.content.type !== 'news_article' && (
       <p class="kapsul-intro">
         {mission.slug === 'misi-02'
-          ? 'Dua pertanyaan yang menurut saya penting untuk diselidiki dari berita Today\'s Nano adalah:'
+          ? 'Dua pertanyaan yang menurut saya penting untuk diselidiki dari berita Nano Today adalah:'
           : 'Dugaan saya terhadap fenomena tersebut adalah:'}
       </p>
     )}

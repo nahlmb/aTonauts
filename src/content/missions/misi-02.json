@@ -2,13 +2,13 @@
   "slug": "misi-02",
   "number": "02",
   "title": "KEMUKAKAN PERTANYAANMU",
-  "subtitle": "Ubah informasi tidak biasa dari berita Today's Nano menjadi pertanyaan ilmiah yang layak untuk diselidiki",
+  "subtitle": "Ubah informasi tidak biasa dari berita Nano Today menjadi pertanyaan ilmiah yang layak untuk diselidiki",
   "progressDots": 2,
   "totalDots": 6,
   "protocol": {
     "status": "Observasi",
     "outputLines": [
-      { "icon": null, "text": "Dua pertanyaan ilmiah tentang kejanggalan teknologi baterai dari berita Today's Nano." }
+      { "icon": null, "text": "Dua pertanyaan ilmiah tentang kejanggalan teknologi baterai dari berita Nano Today." }
     ],
     "panduan": [
       { "icon": "Different_Icon.svg", "text": "Buat dua pertanyaan yang berbeda." },

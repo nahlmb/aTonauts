@@ -1,0 +1,36 @@
+---
+import BookLayout from '../layouts/BookLayout.astro';
+import '../styles/extended-mission.css';
+---
+
+<BookLayout title="Epilog — ATonauts">
+  <main class="reader-page">
+    <div class="epilog-hero">
+      <p class="section-kicker">EPILOG</p>
+      <h1>AKHIR MISI ATONAUTS 1.0</h1>
+      <div class="orbit" aria-hidden="true"><span></span><i></i></div>
+    </div>
+    <section class="mission-section accent">
+      <h2>Peran Philaerners</h2>
+      <p>Kamu adalah Philaerners. Kamu tidak mencari jawaban benar.</p>
+      <p>Tugas Philaerners adalah membangun keputusan terbaik dalam menilai teknologi baterai untuk menyimpan energi hijau, di tengah konflik informasi dari semua pihak yang terlibat.</p>
+      <p class="tagline">Jangan Percaya. Selidiki. Dan Buktikan.</p>
+    </section>
+    <div class="page-actions">
+      <a href="/misi/misi-06" class="btn btn-orange">KEMBALI</a>
+      <a href="/kamus" class="btn btn-nav">BUKA KAMUS MISI</a>
+    </div>
+  </main>
+</BookLayout>
+
+<style>
+  .reader-page { flex: 1; overflow-y: auto; padding: 28px 14px; display: grid; align-content: center; gap: 18px; }
+  .epilog-hero { text-align: center; display: grid; gap: 8px; justify-items: center; }
+  .epilog-hero h1 { color: var(--cyan); font-size: 32px; }
+  .orbit { width: 120px; height: 120px; border: 1px solid rgba(60,226,255,.25); border-radius: 50%; display: grid; place-items: center; position: relative; margin: 10px 0; }
+  .orbit::before, .orbit::after { content: ''; position: absolute; inset: 25px -12px; border: 1px solid rgba(255,107,53,.35); border-radius: 50%; transform: rotate(35deg); }
+  .orbit::after { transform: rotate(-35deg); }
+  .orbit span { width: 36px; height: 36px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 30px rgba(60,226,255,.7); }
+  .orbit i { position: absolute; width: 9px; height: 9px; background: var(--orange); border-radius: 50%; top: 12px; }
+  .tagline { color: var(--orange) !important; font-family: var(--font-tag); font-style: italic; }
+</style>

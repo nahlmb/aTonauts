@@ -1,0 +1,108 @@
+---
+import MissionLayout from '../../layouts/MissionLayout.astro';
+import KapsulWaktu from '../../components/islands/KapsulWaktu.jsx';
+import SavedChoice from '../../components/islands/SavedChoice.jsx';
+import PriorAnswer from '../../components/islands/PriorAnswer.jsx';
+import RosettaTools from '../../components/islands/RosettaTools.jsx';
+import '../../styles/extended-mission.css';
+
+const rosettaPrompt = `Halo Rosetta.
+Saya adalah seorang Philaerners yang sedang menjalankan misi untuk menemukan teknologi baterai terbaik bagi masa depan energi hijau.
+
+Sejauh ini, saya menemukan bahwa baterai modern dapat menggunakan grafena sebagai elektroda negatif menggantikan grafit. Dari hasil penyelidikan laboratorium, grafena memiliki rasio luas permukaan terhadap volume (LP/V) lebih tinggi dibandingkan grafit karena strukturnya jauh lebih tipis.
+
+Namun, saya masih belum menemukan bukti terkait:
+1. Mengapa LP/V yang tinggi dapat membuat baterai menyimpan energi lebih banyak?
+2. Mengapa baterai berbasis grafena dapat memiliki umur pakai lebih panjang dan tidak mudah rusak?
+3. Jika grafena memiliki banyak keunggulan, mengapa belum digunakan secara massal dalam industri baterai?
+
+Jelaskan dengan bahasa yang mudah dipahami pelajar. Sertakan alasan yang didukung artikel ilmiah atau sumber kredibel beserta berkas atau tautan yang dapat saya baca.`;
+
+const changeOptions = ['Ya, pemahaman saya berubah', 'Tidak berubah', 'Berubah sebagian'];
+---
+
+<MissionLayout title="Misi 05 — ATonauts" progressDots={5} totalDots={6} prevHref="/misi/misi-04" nextHref="/misi/misi-06" requiredKeys={['misi_05_temuan_1', 'misi_05_bukti_1', 'misi_05_temuan_2', 'misi_05_bukti_2', 'misi_05_rosetta_evaluasi']}>
+  <div class="extended-mission">
+    <header class="mission-title-card">
+      <div class="mission-number">05</div>
+      <div><h1>SAATNYA UJI DUGAAN</h1><p>Dugaanmu masuk akal, tetapi apakah didukung bukti?</p></div>
+    </header>
+
+    <section class="mission-section accent">
+      <p class="section-kicker">Misi 5.1</p>
+      <h2>Hipotesis vs Temuan</h2>
+      <p>Bandingkan dugaan dari Misi 03 dengan temuan pada Misi 04. Nilai apakah pemahamanmu berubah dan bukti apa yang paling memengaruhinya.</p>
+    </section>
+
+    <section class="mission-section">
+      <p class="section-kicker">Pertanyaan Utama 01</p>
+      <h2>Apa yang berubah pada baterai modern?</h2>
+      <h3>Hipotesis awal saya</h3>
+      <PriorAnswer client:load answerKey="misi_03_dugaan_1" />
+      <div class="field-stack">
+        <KapsulWaktu client:load misiId="misi_05" fieldId="temuan_1" label="TEMUAN DARI INVESTIGASI" hint="Tuliskan temuan yang menjawab pertanyaan pertama..." charLimit={500} />
+        <SavedChoice client:load storeKey="misi_05_pemahaman_1" label="Apakah pemahamanmu berubah?" options={changeOptions} />
+        <KapsulWaktu client:load misiId="misi_05" fieldId="bukti_1" label="BUKTI YANG MEMBUATKU BERUBAH" hint="Bukti, data, atau konsep yang paling memengaruhi pemahamanmu..." charLimit={500} />
+        <KapsulWaktu client:load misiId="misi_05" fieldId="ragu_1" label="BAGIAN YANG MASIH MEMBUATKU RAGU" hint="Tuliskan hal yang masih belum terjawab..." charLimit={400} />
+      </div>
+    </section>
+
+    <section class="mission-section">
+      <p class="section-kicker">Pertanyaan Utama 02</p>
+      <h2>Mengapa ukuran mengecil meningkatkan performa?</h2>
+      <h3>Hipotesis awal saya</h3>
+      <PriorAnswer client:load answerKey="misi_03_dugaan_2" />
+      <div class="field-stack">
+        <KapsulWaktu client:load misiId="misi_05" fieldId="temuan_2" label="TEMUAN DARI INVESTIGASI" hint="Tuliskan temuan yang menjawab pertanyaan kedua..." charLimit={500} />
+        <SavedChoice client:load storeKey="misi_05_pemahaman_2" label="Apakah pemahamanmu berubah?" options={changeOptions} />
+        <KapsulWaktu client:load misiId="misi_05" fieldId="bukti_2" label="BUKTI YANG MEMBUATKU BERUBAH" hint="Bukti, data, atau konsep yang paling memengaruhi pemahamanmu..." charLimit={500} />
+        <KapsulWaktu client:load misiId="misi_05" fieldId="ragu_2" label="BAGIAN YANG MASIH MEMBUATKU RAGU" hint="Tuliskan hal yang masih belum terjawab..." charLimit={400} />
+      </div>
+    </section>
+
+    <section class="mission-section accent">
+      <p class="section-kicker">Misi 5.2</p>
+      <h2>Hubungi Rosetta</h2>
+      <p>Rosetta adalah asisten Akal Imitasi yang membantu melihat sudut pandang lain. Rosetta bukan sumber kebenaran: informasi, argumen, dan sumbernya tetap harus diperiksa.</p>
+      <div class="prompt-box">{rosettaPrompt}</div>
+      <RosettaTools client:load prompt={rosettaPrompt} />
+    </section>
+
+    <section class="mission-section warning">
+      <h2>Protokol Refleksi Kritis</h2>
+      <ol>
+        <li><strong>Aturan 30 menit:</strong> batasi diskusi dengan AI agar proses penyaringan informasi tetap efisien.</li>
+        <li><strong>Fokus prompt:</strong> gunakan prompt wajib sebagai pembuka, lalu kembangkan pertanyaan seperlunya.</li>
+        <li><strong>Catat hasil:</strong> setelah waktu habis, kembali ke modul dan isi refleksi berdasarkan alasan dan bukti.</li>
+      </ol>
+      <p>Sistem tidak menilai apakah kamu setuju atau tidak, tetapi apakah alasanmu mempertimbangkan bukti, sudut pandang lain, dan kemungkinan perubahan pemahaman.</p>
+    </section>
+
+    <section class="mission-section">
+      <h2>Area Refleksi Rosetta</h2>
+      <div class="field-stack">
+        <SavedChoice client:load storeKey="misi_05_rosetta_posisi" label="1. Setelah berdiskusi dengan Rosetta, posisi saya saat ini:" options={[
+          'Lebih setuju dengan Nano Today serta Lab 4.1 dan 4.2',
+          'Lebih setuju dengan Debrizz',
+          'Masih mempertimbangkan jawaban Rosetta dan sumber lain',
+          'Belum dapat menentukan posisi',
+        ]} />
+        <SavedChoice client:load storeKey="misi_05_rosetta_alasan" label="2. Alasan utama saya memilih posisi tersebut:" options={[
+          'Menemukan bukti baru yang sebelumnya belum diketahui',
+          'Menemukan sudut pandang baru yang belum dipertimbangkan',
+          'Menemukan kelemahan dalam pendapat Debrizz',
+          'Menemukan kelemahan dalam klaim Nano Today',
+        ]} />
+        <SavedChoice client:load storeKey="misi_05_rosetta_ragu" label="3. Bagian yang masih membuat saya ragu:" options={[
+          'Mengapa grafena dapat menyimpan energi lebih banyak',
+          'Mengapa grafena lebih awet',
+          'Mengapa grafena belum digunakan secara massal',
+          'Keandalan sumber informasi yang ditemukan',
+          'Tidak ada bagian yang masih saya ragukan',
+        ]} />
+        <KapsulWaktu client:load misiId="misi_05" fieldId="rosetta_evaluasi" label="4. MENURUT SAYA, JAWABAN ROSETTA..." hint="Nilai kejelasan, kekuatan alasan, bukti, dan keterbatasan jawabannya..." charLimit={500} />
+        <KapsulWaktu client:load misiId="misi_05" fieldId="rosetta_bukti" label="5. BUKTI YANG PALING SAYA INGAT" hint="Tuliskan informasi dan sumber yang paling berkesan..." charLimit={500} />
+      </div>
+    </section>
+  </div>
+</MissionLayout>

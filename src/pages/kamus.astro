@@ -1,0 +1,44 @@
+---
+import BookLayout from '../layouts/BookLayout.astro';
+import '../styles/extended-mission.css';
+
+const terms = [
+  ['Atom', 'Partikel penyusun materi yang terdiri atas inti atom—berisi proton dan neutron—serta elektron.'],
+  ['Baterai', 'Perangkat yang menyimpan energi kimia dan mengubahnya menjadi energi listrik saat digunakan.'],
+  ['Carbon Nanotube (CNT)', 'Nanomaterial karbon berdimensi 1D dan berbentuk tabung.'],
+  ['Elektroda', 'Tempat berlangsungnya reaksi reduksi-oksidasi yang memungkinkan energi disimpan atau digunakan.'],
+  ['Elektrolit', 'Zat yang berfungsi sebagai jalur perpindahan ion litium di dalam baterai.'],
+  ['Fullerene (Buckyball)', 'Nanomaterial karbon berdimensi 0D dan berbentuk bulat.'],
+  ['Grafena', 'Nanomaterial karbon berdimensi 2D dan berbentuk satu lembar atom karbon.'],
+  ['Grafit', 'Material karbon berbentuk lembaran-lembaran atom karbon yang bertumpuk.'],
+  ['Luas Permukaan', 'Semua sisi atau bidang sentuh di bagian luar suatu benda; untuk persegi panjang dihitung dengan panjang × lebar.'],
+  ['Material', 'Kumpulan atom atau senyawa dalam jumlah besar, dengan sifat yang ditentukan oleh cara atom atau senyawanya tersusun.'],
+  ['Nanomaterial', 'Material dengan minimal satu dimensi berukuran 1–100 nm; mencakup material 0D, 1D, dan 2D.'],
+  ['Nanoteknologi', 'Pengembangan material, perangkat, atau sistem melalui pengendalian materi pada ukuran 1–100 nm untuk memunculkan sifat unik.'],
+  ['Reaksi oksidasi', 'Reaksi ketika senyawa atau atom melepas elektron.'],
+  ['Reaksi reduksi', 'Reaksi ketika senyawa atau atom menerima elektron.'],
+  ['Senyawa', 'Kumpulan dua atau lebih atom.'],
+  ['Separator', 'Lapisan pemisah kedua elektroda agar tidak bersentuhan langsung sehingga mencegah korsleting.'],
+  ['Skala Nano', 'Skala ukuran yang mencakup rentang 1–100 nm.'],
+  ['Volume', 'Ukuran ruang atau isi yang ditempati suatu materi; panjang × lebar × tinggi.'],
+];
+---
+
+<BookLayout title="Kamus Misi 1.0 — ATonauts">
+  <main class="reader-page">
+    <header><p class="section-kicker">ARSIP PENGETAHUAN</p><h1>KAMUS MISI 1.0</h1><p>Istilah penting yang ditemui sepanjang penyelidikan.</p></header>
+    <dl class="term-grid">
+      {terms.map(([term, definition]) => <div class="term-row"><dt>{term}</dt><dd>{definition}</dd></div>)}
+    </dl>
+    <div class="page-actions">
+      <a href="/epilog" class="btn btn-orange">KEMBALI</a>
+      <a href="/daftar-bacaan" class="btn btn-nav">DAFTAR BACAAN</a>
+    </div>
+  </main>
+</BookLayout>
+
+<style>
+  .reader-page { flex: 1; overflow-y: auto; padding: 24px 14px; display: grid; gap: 16px; }
+  header h1 { color: var(--cyan); font-size: 30px; }
+  header p:last-child { color: rgba(245,247,250,.5); font-size: 12px; }
+</style>

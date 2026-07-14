@@ -25,7 +25,11 @@ function doGet(e) {
 }
 
 function doPost(e) {
+  const lock = LockService.getScriptLock();
   try {
+    // A classroom can submit many responses at once. Serialize writes so rows
+    // and headers cannot collide with each other.
+    lock.waitLock(30000);
     const data = JSON.parse(e.postData.contents || '{}');
     const sheetName = data.sheet || 'Jawaban';
     const payload = data.payload || {};
@@ -50,6 +54,8 @@ function doPost(e) {
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    if (lock.hasLock()) lock.releaseLock();
   }
 }
 
@@ -64,6 +70,39 @@ function ensureHeaders(sheet, payload) {
     'Pertanyaan 2',
     'Dugaan 1',
     'Dugaan 2',
+    'M4 Posisi Debrizz 1',
+    'M4 Alasan Debrizz 1',
+    'M4 Temuan 4.1',
+    'M4 Posisi Debrizz 2',
+    'M4 Alasan Debrizz 2',
+    'M4 Posisi Debrizz 3',
+    'M4 Alasan Debrizz 3',
+    'M4 Waktu Gula A',
+    'M4 Waktu Gula B',
+    'M4 Gula Lebih Cepat',
+    'M4 Analisis Variabel',
+    'M4 Aplikasi Baterai',
+    'M4 Temuan 4.2',
+    'M4 Posisi Debrizz 4',
+    'M4 Alasan Debrizz 4',
+    'M5 Temuan 1',
+    'M5 Pemahaman 1',
+    'M5 Bukti 1',
+    'M5 Keraguan 1',
+    'M5 Temuan 2',
+    'M5 Pemahaman 2',
+    'M5 Bukti 2',
+    'M5 Keraguan 2',
+    'M5 Posisi Rosetta',
+    'M5 Alasan Rosetta',
+    'M5 Keraguan Rosetta',
+    'M5 Evaluasi Rosetta',
+    'M5 Bukti Rosetta',
+    'M6 Opini Manfaat',
+    'M6 Bukti Manfaat',
+    'M6 Opini Risiko',
+    'M6 Bukti Risiko',
+    'M6 Masa Depan',
     'response_id'
   ];
   const payloadKeys = Object.keys(payload);
@@ -72,6 +111,7 @@ function ensureHeaders(sheet, payload) {
     .concat(payloadKeys.filter(key => !preferredOrder.includes(key)));
 
   if (sheet.getLastRow() === 0) {
+    ensureColumnCapacity(sheet, orderedKeys.length);
     sheet.appendRow(orderedKeys);
     styleHeader(sheet, orderedKeys.length);
     return orderedKeys;
@@ -82,6 +122,7 @@ function ensureHeaders(sheet, payload) {
   const missingHeaders = orderedKeys.filter(key => !headers.includes(key));
 
   if (missingHeaders.length > 0) {
+    ensureColumnCapacity(sheet, headers.length + missingHeaders.length);
     sheet.getRange(1, headers.length + 1, 1, missingHeaders.length).setValues([missingHeaders]);
     headers.push(...missingHeaders);
     styleHeader(sheet, headers.length);
@@ -91,6 +132,7 @@ function ensureHeaders(sheet, payload) {
 }
 
 function upsertRow(sheet, headers, values, payload) {
+  ensureColumnCapacity(sheet, headers.length);
   const responseId = payload.response_id;
   const responseIdColumn = headers.indexOf('response_id') + 1;
 
@@ -111,10 +153,19 @@ function upsertRow(sheet, headers, values, payload) {
   sheet.getRange(existingIndex + 2, 1, 1, headers.length).setValues([values]);
 }
 
+function ensureColumnCapacity(sheet, requiredColumns) {
+  const currentColumns = sheet.getMaxColumns();
+  if (currentColumns < requiredColumns) {
+    sheet.insertColumnsAfter(currentColumns, requiredColumns - currentColumns);
+  }
+}
+
 function serializeValue(value) {
   if (value === undefined || value === null) return '';
   if (typeof value === 'object') return JSON.stringify(value);
-  return String(value);
+  const text = String(value);
+  // Prevent learner input from being interpreted as a spreadsheet formula.
+  return /^[=+\-@]/.test(text) ? "'" + text : text;
 }
 
 function styleHeader(sheet, width) {

@@ -1,0 +1,39 @@
+---
+import BookLayout from '../layouts/BookLayout.astro';
+import '../styles/extended-mission.css';
+
+const references = [
+  ['Asamoah, G. A., et al. (2024). Nanotechnology-based lithium-ion battery energy storage systems. Sustainability, 16(21), 9231.', 'https://doi.org/10.3390/su16219231'],
+  ['Baig, N., Kammakakam, I., & Falath, W. (2021). Nanomaterials: a review of synthesis methods, properties, recent progress, and challenges. Materials Advances, 2(6), 1821–1871.', 'https://doi.org/10.1039/D0MA00807A'],
+  ['Frith, J. T., Lacey, M. J., & Ulissi, U. (2023). A non-academic perspective on the future of lithium-based batteries. Nature Communications, 14, 420.', 'https://doi.org/10.1038/s41467-023-35933-2'],
+  ['Gao, T., et al. (2021). Interplay of lithium intercalation and plating on a single graphite particle. Joule, 5(2), 393–414.', 'https://doi.org/10.1016/j.joule.2020.12.020'],
+  ['Gao, Y., Pan, Z., Sun, J., Liu, Z., & Wang, J. (2022). High-energy batteries: beyond lithium-ion and their long road to commercialisation. Nano-Micro Letters, 14, 94.', 'https://doi.org/10.1007/s40820-022-00844-2'],
+  ['Militký, J., & Venkataraman, M. (Eds.). (2023). Advanced Multifunctional Materials from Fibrous Structures. Springer Nature Singapore.', null],
+  ['Ngoy, K. R., et al. (2025). Lithium-ion batteries and the future of sustainable energy: A comprehensive review. Renewable and Sustainable Energy Reviews, 223, 115971.', 'https://doi.org/10.1016/j.rser.2025.115971'],
+  ['Nunes-Pereira, J., Costa, C. M., & Lanceros-Méndez, S. (2015). Polymer composites and blends for battery separators. Journal of Power Sources, 281, 378–398.', 'https://doi.org/10.1016/j.jpowsour.2015.02.010'],
+  ['Peljo, P., ElBachraoui, F., Villevieille, C., & Girault, H. H. (2026). What is an electrical battery? Electrochimica Acta, 148860.', 'https://doi.org/10.1016/j.electacta.2026.148860'],
+  ['Poorshakoor, E., & Darab, M. (2024). Advancements in the development of nanomaterials for lithium-ion batteries. Journal of Energy Storage, 75, 109638.', 'https://doi.org/10.1016/j.est.2023.109638'],
+  ['Samara, F., et al. (2025). Environmental advantages and current trends of graphene-based materials for energy storage. Energy Conversion and Management: X, 28, 101264.', 'https://doi.org/10.1016/j.ecmx.2025.101264'],
+  ['Yang, G., Li, L., Lee, W. B., & Ng, M. C. (2018). Structure of graphene and its disorders: a review. Science and Technology of Advanced Materials, 19(1), 613–648.', 'https://doi.org/10.1080/14686996.2018.1494493'],
+  ['Zhu, Y., Ji, H., Cheng, H. M., & Ruoff, R. S. (2018). Mass production and industrial applications of graphene materials. National Science Review, 5(1), 90–101.', 'https://doi.org/10.1093/nsr/nwx055'],
+];
+---
+
+<BookLayout title="Daftar Bacaan — ATonauts">
+  <main class="reader-page">
+    <header><p class="section-kicker">SUMBER PENYELIDIKAN</p><h1>DAFTAR BACAAN</h1><p>Gunakan sumber berikut untuk memeriksa kembali klaim dalam misi.</p></header>
+    <ol class="reference-list">
+      {references.map(([citation, url]) => <li>{citation} {url && <a href={url} target="_blank" rel="noreferrer">Buka DOI ↗</a>}</li>)}
+    </ol>
+    <div class="page-actions">
+      <a href="/kamus" class="btn btn-orange">KEMBALI</a>
+      <a href="/selesai" class="btn btn-nav">TUNTASKAN MISI</a>
+    </div>
+  </main>
+</BookLayout>
+
+<style>
+  .reader-page { flex: 1; overflow-y: auto; padding: 24px 14px; display: grid; gap: 16px; }
+  header h1 { color: var(--cyan); font-size: 30px; }
+  header p:last-child { color: rgba(245,247,250,.5); font-size: 12px; }
+</style>

@@ -1,0 +1,322 @@
+---
+import MissionLayout from '../../layouts/MissionLayout.astro';
+import KapsulWaktu from '../../components/islands/KapsulWaktu.jsx';
+import SavedChoice from '../../components/islands/SavedChoice.jsx';
+import DebrizzPanel from '../../components/islands/DebrizzPanel.jsx';
+import '../../styles/extended-mission.css';
+
+const commonClosing = 'Tampaknya kita belum memiliki bukti yang cukup untuk memastikan penjelasan paling tepat. Mari hentikan perdebatan sementara dan lanjutkan penyelidikan berdasarkan data.';
+
+const dialogueOne = {
+  id: 'debrizz_1',
+  statement: [
+    'Saya baru saja membaca berita Nano Today. Berita itu menyatakan bahwa baterai ponsel modern semakin tipis dan ringan, tetapi performanya justru semakin baik.',
+    'Berdasarkan pengalaman saya di industri baterai, klaim itu terasa janggal. Jika ukuran baterai semakin kecil, bukankah ruang penyimpanan energinya juga seharusnya berkurang?',
+  ],
+  question: 'Apakah menurut Anda klaim dalam berita Nano Today tersebut masuk akal?',
+  closing: commonClosing,
+  reasons: {
+    setuju: [
+      'Saya belum memahami persoalan ini secara mendalam, sehingga sementara lebih nyaman mengikuti penjelasan Debrizz.',
+      'Saya khawatir perkembangan teknologi baru dapat mengancam pekerjaan di industri baterai konvensional.',
+      'Baterai menyimpan energi. Jika ukurannya lebih kecil, energi yang dapat disimpan seharusnya juga berkurang.',
+      'Penjelasan Debrizz tampak masuk akal, tetapi saya tetap perlu melihat bukti lebih lanjut sebelum menyimpulkan.',
+    ],
+    ragu: [
+      'Saya belum memahami persoalan ini dengan cukup baik untuk memilih salah satu pandangan.',
+      'Nano Today dan Debrizz mungkin mempunyai kepentingan berbeda sehingga saya belum tahu pandangan mana yang dapat dipercaya.',
+      'Kedua penjelasan tampak masuk akal dan mungkin masih ada informasi teknologi baterai modern yang belum saya pahami.',
+      'Bukti saat ini belum cukup untuk menerima atau menolak pandangan Debrizz; saya perlu menyelidiki lebih lanjut.',
+    ],
+    tidak_setuju: [
+      'Saya belum memahami persoalan secara mendalam, tetapi sementara lebih percaya informasi Nano Today.',
+      'Kekhawatiran Debrizz mungkin dipengaruhi posisinya sebagai bagian dari industri baterai konvensional.',
+      'Ukuran kecil belum tentu menurunkan performa; mungkin material atau teknologinya berubah.',
+      'Saya menduga ada faktor selain ukuran, tetapi tetap memerlukan bukti ilmiah sebelum menerima klaim Nano Today.',
+    ],
+  },
+};
+
+const dialogueTwo = {
+  id: 'debrizz_2',
+  statement: [
+    'Saya mulai memahami bahwa perubahan baterai modern bukan sekadar ukuran, melainkan material elektroda negatif: grafit pada baterai konvensional dan grafena pada sejumlah pengembangan baterai modern.',
+    'Namun, keduanya tersusun dari atom karbon dan pola heksagonal yang serupa. Bukankah karbon tetaplah karbon?',
+  ],
+  question: 'Apakah klaim ATolabs bahwa grafena lebih unggul daripada grafit memang masuk akal?',
+  closing: 'Kita belum dapat memastikan apakah perbedaan performa benar-benar disebabkan oleh struktur material. Lanjutkan penyelidikan tentang hubungan struktur dan sifat.',
+  reasons: {
+    setuju: [
+      'Saya belum memahami persoalan ini, sehingga sementara mengikuti keraguan Debrizz.',
+      'Pengalaman seseorang yang bekerja di industri baterai perlu dipertimbangkan sebelum menerima klaim teknologi baru.',
+      'Grafit dan grafena sama-sama karbon dengan pola heksagonal; saya mempertanyakan mengapa performanya berbeda.',
+      'Informasi baru menjelaskan atom penyusunnya; saya masih membutuhkan bukti struktur dan sifat keduanya.',
+    ],
+    ragu: [
+      'Saya belum cukup memahami perbedaan grafit dan grafena untuk menentukan posisi.',
+      'Nano Today dan Debrizz memiliki kepentingan berbeda sehingga perlu sumber lain.',
+      'Susunan atom dapat memengaruhi sifat, tetapi saya belum memahami bagaimana hal itu terjadi pada grafit dan grafena.',
+      'Saya memerlukan bukti lebih lanjut mengenai hubungan struktur material dan performa baterai.',
+    ],
+    tidak_setuju: [
+      'Saya lebih percaya hasil penyelidikan ATolabs, walaupun belum memahami seluruh penjelasannya.',
+      'Keraguan Debrizz mungkin dipengaruhi posisinya sebagai industri konvensional.',
+      'Material dengan unsur sama belum tentu memiliki sifat sama; bentuk dan susunan atom dapat menghasilkan sifat berbeda.',
+      'Saya menduga ada faktor struktur, tetapi tetap memerlukan bukti ilmiah sebelum menarik kesimpulan.',
+    ],
+  },
+};
+
+const dialogueThree = {
+  id: 'debrizz_3',
+  statement: [
+    'Grafit tersusun atas banyak lapisan grafena, sedangkan grafena hanya satu lapisan sangat tipis pada skala nano.',
+    'Jika grafena hanya satu lapisan, bukankah ruang untuk menyimpan ion litium dan elektron juga menjadi lebih sedikit?',
+  ],
+  question: 'Mengapa material yang lebih tipis justru diklaim dapat meningkatkan performa baterai?',
+  closing: 'Keraguan itu masuk akal, tetapi jawabannya memerlukan data tentang hubungan struktur nano, perpindahan ion litium, dan performa baterai.',
+  reasons: {
+    setuju: [
+      'Pengalaman Debrizz di bidang baterai membuat pandangannya layak dipertimbangkan.',
+      'Pengalaman industri perlu dipertimbangkan sebelum menerima klaim teknologi baru.',
+      'Jika material sangat tipis, saya menduga kapasitas penyimpanannya berkurang.',
+      'Penjelasan Debrizz masuk akal, tetapi saya masih membutuhkan bukti eksperimen.',
+    ],
+    ragu: [
+      'Saya belum memahami hubungan ketebalan grafena dan performa baterai.',
+      'Nano Today dan Debrizz membawa kepentingan berbeda; saya belum tahu mana yang dapat dipercaya.',
+      'Material tipis tampak menyimpan lebih sedikit, tetapi struktur nano mungkin mengubah sifat material.',
+      'Saya perlu data tentang struktur nano, perpindahan ion litium, dan performa baterai.',
+    ],
+    tidak_setuju: [
+      'Saya lebih percaya hasil laboratorium dibandingkan logika ukuran semata.',
+      'Dampak sosial industri penting, tetapi harus dibedakan dari bukti ilmiah.',
+      'Material lebih tipis belum tentu berperforma rendah; ukuran partikel dapat mengubah sifat.',
+      'Saya menduga struktur nano meningkatkan performa, tetapi masih memerlukan bukti eksperimen.',
+    ],
+  },
+};
+
+const dialogueFour = {
+  id: 'debrizz_4',
+  statement: [
+    'Saya memahami keunggulan grafena dan pengaruh struktur nano terhadap performa baterai. Namun penggunaannya di industri masih terbatas.',
+    'Perusahaan mempertimbangkan biaya produksi, keamanan, bahan baku, dan kesiapan manufaktur—bukan performa saja.',
+  ],
+  question: 'Apakah lambatnya penggunaan grafena menunjukkan bahwa teknologi ini masih memiliki keterbatasan?',
+  closing: 'Pertanyaan ini harus dilihat dari sains, ekonomi, manufaktur, dan kebutuhan industri. Carilah bukti mengenai manfaat, risiko, serta tantangan grafena di dunia nyata.',
+  reasons: {
+    setuju: [
+      'Pengalaman Debrizz di bidang baterai membuat pandangannya layak dipertimbangkan.',
+      'Perubahan teknologi besar berdampak pada industri dan pekerja sehingga tidak mudah dilakukan.',
+      'Jika benar-benar unggul, industri biasanya berusaha menggunakannya; mungkin masih ada keterbatasan praktis.',
+      'Saya sementara setuju, tetapi membutuhkan data biaya, keamanan, dan kesiapan industri.',
+    ],
+    ragu: [
+      'Saya belum memahami hubungan karakter grafena dan penerapannya di industri.',
+      'Mungkin ada faktor ekonomi, tenaga kerja, atau kepentingan industri yang memperlambat penggunaan.',
+      'Belum digunakan massal tidak selalu berarti kurang baik; mungkin ada kendala produksi dan pengembangan.',
+      'Informasi belum cukup untuk menentukan apakah hambatannya teknologi atau faktor industri lain.',
+    ],
+    tidak_setuju: [
+      'Saya lebih percaya hasil penyelidikan laboratorium dibandingkan logika industri.',
+      'Keputusan industri tidak hanya ditentukan kualitas teknologi; banyak faktor lain memengaruhinya.',
+      'Keunggulan ilmiah tidak langsung diikuti penggunaan massal; teknologi perlu pengujian dan penyesuaian.',
+      'Tidak digunakannya teknologi secara massal bukan bukti bahwa teknologinya buruk; saya masih memerlukan bukti.',
+    ],
+  },
+};
+---
+
+<MissionLayout title="Misi 04 — ATonauts" progressDots={4} totalDots={6} prevHref="/misi/misi-03" nextHref="/misi/misi-05" requiredKeys={['misi_04_temuan_41', 'misi_04_analisis_variabel', 'misi_04_aplikasi_baterai', 'misi_04_temuan_42']}>
+  <div class="extended-mission">
+    <header class="mission-title-card">
+      <div class="mission-number">04</div>
+      <div><h1>SELIDIKI DAN BUKTIKAN</h1><p>Buktikan apa yang sebenarnya terjadi pada teknologi baterai modern.</p></div>
+    </header>
+
+    <section class="mission-section accent">
+      <p class="section-kicker">Peta Penyelidikan</p>
+      <h2>ATolabs #4.1 dan #4.2</h2>
+      <div class="toc-grid">
+        <a href="#kosakata-awal"><span>01</span>Kosakata Dasar</a>
+        <a href="#atolabs-41"><span>02</span>Perubahan Baterai Modern</a>
+        <a href="#nanomaterial"><span>03</span>Grafena dan Nanomaterial</a>
+        <a href="#atolabs-42"><span>04</span>Rasio LP/V dan Eksperimen</a>
+      </div>
+    </section>
+
+    <section class="mission-section" id="kosakata-awal">
+      <p class="section-kicker">Sebelum ATolabs #4.1</p>
+      <h2>Kosakata Dasar</h2>
+      <dl class="term-grid">
+        <div class="term-row"><dt>BATERAI</dt><dd>Perangkat yang menyimpan energi kimia dan mengubahnya menjadi energi listrik saat digunakan.</dd></div>
+        <div class="term-row"><dt>REAKSI REDUKSI</dt><dd>Reaksi ketika senyawa atau atom menerima elektron.</dd></div>
+        <div class="term-row"><dt>REAKSI OKSIDASI</dt><dd>Reaksi ketika senyawa atau atom melepas elektron.</dd></div>
+        <div class="term-row"><dt>ELEKTRODA</dt><dd>Tempat berlangsungnya reaksi reduksi-oksidasi yang memungkinkan energi disimpan atau digunakan.</dd></div>
+        <div class="term-row"><dt>ELEKTROLIT</dt><dd>Zat yang menjadi jalur perpindahan ion litium di dalam baterai.</dd></div>
+        <div class="term-row"><dt>SEPARATOR</dt><dd>Lapisan pemisah kedua elektroda agar tidak bersentuhan langsung dan menimbulkan korsleting.</dd></div>
+        <div class="term-row"><dt>ATOM, SENYAWA, MATERIAL</dt><dd>Atom adalah partikel penyusun materi; senyawa adalah kumpulan dua atau lebih atom; material adalah kumpulan atom atau senyawa dalam jumlah besar dengan sifat yang ditentukan oleh susunannya.</dd></div>
+      </dl>
+    </section>
+
+    <section class="mission-section warning">
+      <DebrizzPanel client:load {...dialogueOne} />
+    </section>
+
+    <div class="lab-banner" id="atolabs-41">
+      <p class="lab-name">ATOLABS · PENELITIAN #4.1</p>
+      <h2>Identifikasi Perubahan pada Baterai Modern</h2>
+    </div>
+
+    <section class="mission-section accent">
+      <h2>Tujuan Penelitian #4.1</h2>
+      <p>Menyelidiki apa yang berubah dari baterai ponsel modern sehingga membuat performanya lebih canggih.</p>
+      <div class="toc-grid">
+        <a href="#cara-kerja"><span>A</span>Baterai dan Cara Kerjanya</a>
+        <a href="#komparasi"><span>B</span>Baterai Modern vs Konvensional</a>
+        <a href="#grafit-grafena"><span>C</span>Grafit dan Grafena</a>
+        <a href="#jawaban-41"><span>D</span>Kapsul Waktu #4.1</a>
+      </div>
+    </section>
+
+    <section class="mission-section" id="cara-kerja">
+      <h2>Baterai dan Cara Kerjanya</h2>
+      <blockquote class="callout cyan"><p>“Energi tidak dapat diciptakan maupun dimusnahkan, melainkan dapat diubah bentuknya.” — Hukum Kekekalan Energi</p></blockquote>
+      <div class="energy-flow"><span>Energi Kimia</span><b>↔</b><span>Energi Listrik</span><b>→</b><span>Energi Panas</span></div>
+      <p>Baterai bukan penghasil energi. Baterai menyimpan energi kimia dan mengubahnya menjadi energi listrik. Baterai ion litium dipakai luas pada ponsel, kendaraan listrik, dan sistem penyimpanan energi terbarukan.</p>
+      <h3>Komponen Baterai</h3>
+      <ol>
+        <li><strong>Elektroda positif dan negatif:</strong> tempat berlangsungnya reaksi redoks.</li>
+        <li><strong>Elektrolit:</strong> jalur perpindahan ion litium.</li>
+        <li><strong>Separator:</strong> mencegah kedua elektroda bersentuhan langsung.</li>
+      </ol>
+      <h3>Saat Mengisi Daya</h3>
+      <p>Energi listrik menjadi energi kimia. Elektron bergerak dari elektroda positif ke negatif melalui rangkaian luar, sedangkan ion litium bergerak melalui elektrolit.</p>
+      <h3>Saat Menggunakan Daya</h3>
+      <p>Energi kimia menjadi energi listrik. Elektron dan ion litium kembali bergerak dari elektroda negatif menuju elektroda positif. Ketika sebagian besar ion kembali, daya baterai menurun dan akhirnya habis.</p>
+      <div class="callout"><p>Baterai bukan hanya soal jumlah ion litium yang ditampung, tetapi juga kekuatan elektroda menghadapi siklus <em>charge–discharge</em> berulang.</p></div>
+    </section>
+
+    <section class="mission-section" id="komparasi">
+      <h2>Baterai Modern vs Konvensional</h2>
+      <table class="science-table">
+        <thead><tr><th>Komponen</th><th>Konvensional</th><th>Modern/Riset</th></tr></thead>
+        <tbody>
+          <tr><td>Elektroda negatif</td><td>C₆ — Grafit</td><td>C₆ — Grafena</td></tr>
+          <tr><td>Elektroda positif</td><td>Oksida logam transisi, misalnya LiCoO₂</td><td>Oksida logam transisi, misalnya LiCoO₂</td></tr>
+          <tr><td>Elektrolit</td><td>Garam litium</td><td>Garam litium</td></tr>
+          <tr><td>Separator</td><td>Polimer, misalnya polietilen</td><td>Polimer, misalnya polietilen</td></tr>
+        </tbody>
+      </table>
+      <p class="text-muted">Catatan: baterai grafena belum digunakan secara luas di industri. Tabel hanya menampilkan material aktif pada elektroda.</p>
+    </section>
+
+    <section class="mission-section" id="grafit-grafena">
+      <h2>Perbedaan Grafit dan Grafena</h2>
+      <table class="science-table">
+        <thead><tr><th>Material</th><th>Susunan</th><th>Morfologi dan Sifat</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Grafit</strong><br/>Karbon, struktur C₆ heksagonal</td><td>Berlapis-lapis, 3D</td><td>Tampak abu-abu kehitaman; lentur, tidak elastis, menghantarkan listrik dan panas, relatif inert.</td></tr>
+          <tr><td><strong>Grafena</strong><br/>Karbon, struktur C₆ heksagonal</td><td>Satu lembar, 2D</td><td>Tidak tampak langsung oleh mata; sangat kuat serta menghantarkan listrik dan panas dengan sangat baik.</td></tr>
+        </tbody>
+      </table>
+      <p class="text-muted">Ringkasan sifat merujuk pada Militký &amp; Venkataraman (2023).</p>
+    </section>
+
+    <section class="mission-section warning">
+      <DebrizzPanel client:load {...dialogueTwo} />
+    </section>
+
+    <section class="mission-section" id="nanomaterial">
+      <h2>Nanomaterial</h2>
+      <p><em>Nano</em> berarti sangat kecil. Satu nanometer adalah sepersejuta milimeter atau sepersemiliar meter.</p>
+      <div class="formula">1 nm = 1 / 1.000.000 mm = 1 / 1.000.000.000 m</div>
+      <ul>
+        <li>Diameter rambut manusia sekitar 75.000 nanometer.</li>
+        <li>Satu nanometer kira-kira setara diameter sepuluh atom hidrogen.</li>
+      </ul>
+      <dl class="term-grid">
+        <div class="term-row"><dt>SKALA NANO</dt><dd>Rentang ukuran 1–100 nm.</dd></div>
+        <div class="term-row"><dt>NANOMATERIAL</dt><dd>Material dengan minimal satu dimensi berukuran 1–100 nm.</dd></div>
+        <div class="term-row"><dt>NANOTEKNOLOGI</dt><dd>Pengembangan material, perangkat, atau sistem melalui pengendalian materi pada ukuran 1–100 nm untuk memunculkan sifat unik.</dd></div>
+      </dl>
+      <p>Grafena adalah nanomaterial 2D karena hanya ketebalannya yang berada pada skala nano.</p>
+      <table class="science-table">
+        <thead><tr><th>Jenis</th><th>Dimensi pada Skala Nano</th><th>Contoh</th></tr></thead>
+        <tbody>
+          <tr><td>0D</td><td>Panjang, lebar, dan tinggi</td><td>Fullerene/Buckyball</td></tr>
+          <tr><td>1D</td><td>Dua dimensi</td><td>Carbon Nanotube</td></tr>
+          <tr><td>2D</td><td>Satu dimensi, yaitu ketebalan</td><td>Grafena</td></tr>
+          <tr><td>3D</td><td>Tidak ada dimensi pada skala nano</td><td>Grafit</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="mission-section warning">
+      <DebrizzPanel client:load {...dialogueThree} />
+    </section>
+
+    <section class="mission-section accent" id="jawaban-41">
+      <p class="section-kicker">Kapsul Waktu #4.1</p>
+      <h2>Apa yang berubah?</h2>
+      <p>Dari hasil penyelidikan, apa yang berubah dari komponen baterai ponsel modern sehingga performanya lebih canggih?</p>
+      <KapsulWaktu client:load misiId="misi_04" fieldId="temuan_41" label="TEMUAN PENELITIAN #4.1" hint="Yang berubah dari komponen baterai modern adalah ..., sehingga ..." charLimit={500} />
+    </section>
+
+    <div class="lab-banner" id="atolabs-42">
+      <p class="lab-name">ATOLABS · PENELITIAN #4.2</p>
+      <h2>Identifikasi Peningkatan Performa Baterai Modern</h2>
+    </div>
+
+    <section class="mission-section">
+      <h2>Rasio Luas Permukaan terhadap Volume</h2>
+      <p>Di atas 100 nm, material umumnya masih mirip dengan bentuk makronya. Pada rentang 1–100 nm, sebagian material menunjukkan sifat unik. Salah satu penyebabnya adalah rasio luas permukaan terhadap volume (LP/V) yang meningkat drastis.</p>
+      <div class="callout cyan"><p><strong>Fenomena roti berjamur:</strong> roti yang dipotong kecil-kecil memiliki lebih banyak permukaan terbuka. Jamur dapat berinteraksi dengan lebih banyak bagian roti dibandingkan pada satu bongkah utuh.</p></div>
+      <p>Mengecilkan potongan materi memperbesar bidang sentuh terhadap volumenya. Akibatnya, materi lebih cepat berinteraksi dengan lingkungan.</p>
+    </section>
+
+    <section class="mission-section accent">
+      <p class="section-kicker">Marie Meneliti</p>
+      <h2>Percobaan Gula Sederhana</h2>
+      <h3>Alat dan bahan</h3>
+      <ul>
+        <li>Satu sendok makan gula pasir.</li>
+        <li>Satu sendok makan gula pasir yang ditumbuk halus.</li>
+        <li>Dua gelas bening dengan suhu dan volume air hangat yang sama.</li>
+        <li>Pengaduk dan stopwatch.</li>
+      </ul>
+      <h3>Langkah kerja</h3>
+      <ol>
+        <li>Beri nama Gelas A dan B.</li>
+        <li>Masukkan gula pasir ke Gelas A dan gula halus ke Gelas B.</li>
+        <li>Aduk masing-masing dua kali, lalu catat waktu larutnya.</li>
+      </ol>
+      <div class="field-stack">
+        <div class="inline-fields">
+          <KapsulWaktu client:load misiId="misi_04" fieldId="gula_a" label="WAKTU GELAS A" hint="... detik" charLimit={40} />
+          <KapsulWaktu client:load misiId="misi_04" fieldId="gula_b" label="WAKTU GELAS B" hint="... detik" charLimit={40} />
+        </div>
+        <SavedChoice client:load storeKey="misi_04_gula_lebih_cepat" label="Gula pada gelas mana yang lebih cepat larut?" options={['Gelas A — gula pasir', 'Gelas B — gula halus']} />
+        <KapsulWaktu client:load misiId="misi_04" fieldId="analisis_variabel" label="ANALISIS VARIABEL" hint="Semakin ... ukuran partikel, semakin ... luas permukaan total, meskipun ... total gula tetap sama." charLimit={400} />
+        <KapsulWaktu client:load misiId="misi_04" fieldId="aplikasi_baterai" label="APLIKASI KE BATERAI NANO" hint="Saya memilih material ... karena rasio LP/V lebih ..., sehingga area kontak ion litium lebih ..." charLimit={500} />
+      </div>
+    </section>
+
+    <section class="mission-section">
+      <h2>Menghubungkan Eksperimen dengan Grafena</h2>
+      <p>Grafena setebal satu lapisan atom karbon memiliki rasio LP/V sangat tinggi dibandingkan grafit. Lebih banyak permukaannya dapat diakses ion litium saat pengisian dan penggunaan daya.</p>
+      <p>Semakin besar area kontak ion litium dengan elektroda, semakin cepat perpindahan ion dan elektron. Karena itu, grafena berpotensi mempercepat pengisian daya dan meningkatkan efisiensi material elektroda.</p>
+    </section>
+
+    <section class="mission-section accent">
+      <p class="section-kicker">Kapsul Waktu #4.2</p>
+      <h2>Mengapa ukuran kecil meningkatkan performa?</h2>
+      <KapsulWaktu client:load misiId="misi_04" fieldId="temuan_42" label="TEMUAN PENELITIAN #4.2" hint="Ukuran material elektroda yang mengecil menyebabkan rasio LP/V ..., sehingga interaksi ion litium semakin ... dan performa baterai semakin ..." charLimit={500} />
+    </section>
+
+    <section class="mission-section warning">
+      <DebrizzPanel client:load {...dialogueFour} />
+    </section>
+  </div>
+</MissionLayout>

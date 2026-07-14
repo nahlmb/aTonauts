@@ -1,7 +1,7 @@
 {
   "slug": "misi-03",
   "number": "03",
-  "title": "DUGA DULU, UJI NANTI!",
+  "title": "RAMAL DULU, UJI NANTI!",
   "subtitle": "Buat dugaan dari dua pertanyaan utama penyelidikan",
   "progressDots": 3,
   "totalDots": 6,
@@ -9,7 +9,7 @@
     "status": "Observasi",
     "outputLines": [
       { "icon": null, "text": "Buat dugaan untuk dua pertanyaan penyelidikan utama:" },
-      { "icon": "01_ICON.svg", "text": "Apa yang berubah dari baterai ponsel modern sehingga membuat kapasitasnya lebih canggih?" },
+      { "icon": "01_ICON.svg", "text": "Apa yang berubah dari baterai ponsel modern sehingga membuat performanya lebih canggih?" },
       { "icon": "02_ICON.svg", "text": "Mengapa ukuran baterai yang mengecil justru dapat meningkatkan performa ponsel?" }
     ],
     "panduan": [
@@ -37,6 +37,6 @@
   ],
   "navigation": {
     "prev": "/misi/misi-02",
-    "next": "/selesai"
+    "next": "/misi/misi-04"
   }
 }

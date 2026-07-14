@@ -1,5 +1,6 @@
 ---
 import BookLayout from './BookLayout.astro';
+import ValidatedNext from '../components/islands/ValidatedNext.jsx';
 
 interface Props {
   title: string;
@@ -9,6 +10,7 @@ interface Props {
   totalDots?: number;
   prevHref?: string;
   nextHref?: string;
+  requiredKeys?: string[];
 }
 
 const {
@@ -19,6 +21,7 @@ const {
   totalDots = 6,
   prevHref = '/',
   nextHref = '/',
+  requiredKeys = [],
 } = Astro.props;
 ---
 
@@ -31,7 +34,7 @@ const {
     </div>
     <div class="mh-right">
       <p class="mh-progress-label">PROGRESS MISI</p>
-      <div class="mh-dots" role="progressbar" aria-valuenow={progressDots} aria-valuemax={totalDots}>
+      <div class="mh-dots" role="progressbar" aria-label="Progres misi" aria-valuemin="0" aria-valuenow={progressDots} aria-valuemax={totalDots}>
         {Array.from({ length: totalDots }, (_, i) => (
           <span class={`dot${i < progressDots ? ' dot-active' : ''}`} />
         ))}
@@ -50,12 +53,20 @@ const {
       <img src="/assets/icons/LeftArrow_Icons.svg" alt="" class="nav-icon" />
       KEMBALI
     </a>
-    <a href={nextHref} class="btn btn-nav mf-btn" id="btn-next">
-      LANJUTKAN MISI
-      <img src="/assets/icons/RightArrow_Icons.svg" alt="" class="nav-icon" />
-    </a>
+    {requiredKeys.length > 0 ? (
+      <ValidatedNext client:load href={nextHref} requiredKeys={requiredKeys} />
+    ) : (
+      <a href={nextHref} class="btn btn-nav mf-btn" id="btn-next">
+        LANJUTKAN MISI
+        <img src="/assets/icons/RightArrow_Icons.svg" alt="" class="nav-icon" />
+      </a>
+    )}
   </footer>
 </BookLayout>
+
+<script define:vars={{ progressDots }}>
+  localStorage.setItem('atonauts_progress', String(progressDots));
+</script>
 
 <style>
   /* Sticky Header */

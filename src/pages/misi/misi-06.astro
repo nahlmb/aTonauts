@@ -1,0 +1,39 @@
+---
+import MissionLayout from '../../layouts/MissionLayout.astro';
+import KapsulWaktu from '../../components/islands/KapsulWaktu.jsx';
+import TransmissionPanel from '../../components/islands/TransmissionPanel.jsx';
+import '../../styles/extended-mission.css';
+---
+
+<MissionLayout title="Misi 06 — ATonauts" progressDots={6} totalDots={6} prevHref="/misi/misi-05" nextHref="#transmission">
+  <div class="extended-mission">
+    <header class="mission-title-card">
+      <div class="mission-number">06</div>
+      <div><h1>REFLEKSI DAN TENTANG MASA DEPAN</h1><p>Apakah grafena merupakan solusi terbaik untuk menyimpan energi hijau?</p></div>
+    </header>
+
+    <section class="mission-section accent">
+      <h2>Log Refleksi Misi 1.0</h2>
+      <p>Gunakan hasil penyelidikan, eksperimen, dialog dengan Debrizz, dan konsultasi Rosetta. Bedakan opini dari fakta dan sebutkan bukti yang mendukung keputusanmu.</p>
+    </section>
+
+    <section class="mission-section">
+      <div class="field-stack">
+        <KapsulWaktu client:load misiId="misi_06" fieldId="manfaat_opini" label="01 · ANALISIS MANFAAT NANOTEKNOLOGI" hint="Tuliskan opinimu mengenai manfaat nanoteknologi..." charLimit={300} />
+        <KapsulWaktu client:load misiId="misi_06" fieldId="manfaat_bukti" label="02 · BUKTI MANFAAT NANOTEKNOLOGI" hint="Tuliskan fakta manfaat yang ditemukan selama penyelidikan..." charLimit={300} />
+        <KapsulWaktu client:load misiId="misi_06" fieldId="risiko_opini" label="03 · POTENSI RISIKO NANOTEKNOLOGI" hint="Tuliskan opinimu mengenai potensi risiko nanoteknologi..." charLimit={300} />
+        <KapsulWaktu client:load misiId="misi_06" fieldId="risiko_bukti" label="04 · BUKTI RISIKO NANOTEKNOLOGI" hint="Tuliskan fakta risiko yang ditemukan selama penyelidikan..." charLimit={300} />
+        <KapsulWaktu client:load misiId="misi_06" fieldId="masa_depan" label="05 · MASA DEPAN NANOTEKNOLOGI BATERAI" hint="Apa yang masih perlu diperdalam jika nanoteknologi digunakan untuk menyimpan energi hijau?" charLimit={300} />
+      </div>
+    </section>
+
+    <div class="warning-copy">
+      <span aria-hidden="true">⚠</span>
+      <div><strong>SISTEM TIDAK MENYIMPAN SALINAN TRANSMISI PRIBADI</strong><p>Salin seluruh responsmu sebelum menyelesaikan protokol transmisi.</p></div>
+    </div>
+
+    <section class="mission-section warning" id="transmission">
+      <TransmissionPanel client:load />
+    </section>
+  </div>
+</MissionLayout>

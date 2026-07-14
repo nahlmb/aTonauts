@@ -43,6 +43,10 @@ Setiap siswa menjadi satu baris dengan kolom sederhana:
 - `Pertanyaan 2`
 - `Dugaan 1`
 - `Dugaan 2`
+- Seluruh posisi dan alasan dialog `Debrizz` pada Misi 04
+- Temuan ATolabs 4.1 dan 4.2 serta hasil eksperimen gula
+- Perbandingan hipotesis, temuan, dan refleksi `Rosetta` pada Misi 05
+- Lima log refleksi akhir pada Misi 06
 
 Kolom `response_id` dibuat unik untuk setiap sesi pengerjaan. Setelah rekap berhasil dikirim dari halaman selesai, data lokal siswa akan direset sehingga saat kembali ke awal mereka mengisi dari kosong lagi.
 
@@ -85,6 +89,21 @@ Build:
 
 - [src/components/islands/PrologController.jsx](src/components/islands/PrologController.jsx) menyimpan identitas awal di browser.
 - [src/components/islands/KapsulWaktu.jsx](src/components/islands/KapsulWaktu.jsx) menyimpan jawaban misi di browser.
+- [src/components/islands/DebrizzPanel.jsx](src/components/islands/DebrizzPanel.jsx) menangani dialog posisi dan alasan pada Misi 04.
+- [src/components/islands/SavedChoice.jsx](src/components/islands/SavedChoice.jsx) menyimpan pilihan tunggal lintas halaman.
+- [src/components/islands/RosettaTools.jsx](src/components/islands/RosettaTools.jsx) menyediakan salin prompt dan timer konsultasi 30 menit.
+- [src/components/islands/TransmissionPanel.jsx](src/components/islands/TransmissionPanel.jsx) menyiapkan surat refleksi dan konfirmasi transmisi pribadi.
 - [src/components/islands/SubmitFinalResponses.jsx](src/components/islands/SubmitFinalResponses.jsx) mengirim semua respons sekaligus saat halaman selesai dibuka.
 - [src/utils/sheets.js](src/utils/sheets.js) mengirim rekap data ke Apps Script.
 - [apps-script/Code.gs](apps-script/Code.gs) menerima data dan menulisnya ke Google Sheets.
+
+## Alur Lengkap
+
+```text
+/ → /prolog → /operasi
+  → /misi/misi-01 → /misi/misi-02 → /misi/misi-03
+  → /misi/misi-04 → /misi/misi-05 → /misi/misi-06
+  → /epilog → /kamus → /daftar-bacaan → /selesai
+```
+
+Video prolog `/assets/video/prolog_intro.mp4` sengaja dibiarkan sebagai aset eksternal yang dapat ditambahkan kemudian.

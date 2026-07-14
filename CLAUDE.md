@@ -26,8 +26,11 @@ Interactive ebook berbasis web untuk siswa SMA (Kurikulum Merdeka). Topik: inves
       → /operasi (info statis: timeline misi + stakeholder)
         → /misi/misi-01 (Temukan Anomali)
           → /misi/misi-02 (Kemukakan Pertanyaan)
-            → /misi/misi-03 (Duga Dulu, Uji Nanti!)
-              → /selesai
+            → /misi/misi-03 (Ramal Dulu, Uji Nanti!)
+              → /misi/misi-04 (Selidiki dan Buktikan)
+                → /misi/misi-05 (Saatnya Uji Dugaan)
+                  → /misi/misi-06 (Refleksi dan Tentang Masa Depan)
+                    → /epilog → /kamus → /daftar-bacaan → /selesai
 ```
 
 ## Arsitektur Penting
@@ -76,15 +79,11 @@ progress  → number                          — localStorage key: atonauts_pro
 - `icons/` — semua SVG (Capsule, Chain, Different, End, Play, Question, Arrow, dll.)
 - `fonts/` — FiraCode, FiraSansCondensed, GoogleSans, GoogleSansCode
 
-### BELUM ADA (placeholder SVG sudah dipasang, ganti saat asset datang)
+### BELUM ADA (ditambahkan saat aset datang)
 - `public/assets/video/prolog_intro.mp4`
-- `public/assets/images/Phonecell_Today'sNano.png`
-- `public/assets/images/HighLightBox_1_Today'sNano.png`
-- `public/assets/images/HighLightBox_2_Today'sNano.png`
-- Icon form login asli: avatar_icons.png, class_icons.png, archive_icons.png
 
-## Cara Tambah Misi Baru
-1. Buat `src/content/missions/misi-04.json` (ikuti schema misi-01/02/03)
+## Cara Tambah Misi Berbasis Konten Sederhana
+1. Buat file JSON baru di `src/content/missions/` (ikuti schema misi-01/02/03)
 2. Update `navigation.next` di misi sebelumnya
 3. Jika misi punya konten custom (bukan artikel berita), tambahkan case di `[slug].astro`
 4. Done — route `/misi/misi-04` otomatis aktif
